@@ -26,7 +26,10 @@ This project implements a smart IoT monitoring node using an **ESP32**, a **DHT2
 | **Relay IN** | GPIO 14 | Output (Control) |
 | **Relay GND** | GND | Ground |
 
+### Wiring Diagram/Photo
+**Evidence:**
 
+![Wiring Diagram](images/your_wiring_photo.jpg)
 
 ---
 
@@ -34,12 +37,16 @@ This project implements a smart IoT monitoring node using an **ESP32**, a **DHT2
 
 ### Task 1: Sensor Read & Print
 The DHT22 is sampled every 5 seconds. Data is formatted to 2 decimal places and printed to the serial console.
-* **Evidence:** 
+
+**Evidence:**
+
 ![Serial Monitor](images/photo_2026-01-22_14-10-43.jpg)
 
 ### Task 2: Telegram Send
 Implementation of the `send_message()` function using `uRequests`. A test message was successfully posted to the Telegram group.
-* **Evidence:** 
+
+**Evidence:**
+
 ![Telegram Test Message](images/photo_2026-01-22_14-10-48.jpg)
 ![Telegram Test Message](images/photo_2026-01-22_14-09-14.jpg)
 
@@ -48,19 +55,30 @@ The system processes incoming messages to handle the following:
 - `/status`: Replies with current Temperature, Humidity, and Relay state.
 - `/on`: Switches the relay ON manually.
 - `/off`: Switches the relay OFF manually.
-* **Evidence:** 
+
+**Evidence:**
+
+![Bot Commands Status](images/your_task3_photo.jpg)
 
 ### Task 4: Threshold Logic & Alerts
 - **State A:** $T < 30^{\circ}C$. System is silent.
-- **State B:** $T \ge 30^{\circ}C$ and Relay is **OFF**. Alert sent every 5s.
-- **State C:** User sends `/on`. Alerts stop even if $T \ge 30^{\circ}C$.
-- **State D:** $T$ drops below $30^{\circ}C$. Relay turns **OFF** automatically + "Auto-OFF" notification.
-* **Evidence:** [Link to Demo Video (60-90s)]
+- **State B:** $T \ge 30^{\circ}C$ and Relay is **OFF**. Alert sent every 5s until `/on`.
+- **State C:** After `/on`, alerts stop. 
+- **State D:** When $T < 30^{\circ}C$, Relay turns **OFF** automatically + "Auto-OFF" notice sent.
+
+**Evidence:**
+
+[Link to Demo Video (60-90s)](https://your-video-link-here.com)
 
 ---
 
 ## 5. System Logic Flowchart
+This diagram illustrates the state machine and loop logic used in the firmware.
 
+**Evidence:**
+
+
+![Flowchart](images/your_flowchart.png)
 
 ---
 
