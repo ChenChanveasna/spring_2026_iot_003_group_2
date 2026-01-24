@@ -55,8 +55,10 @@ The system processes incoming messages to handle the following:
 - `/status`: Replies with current Temperature, Humidity, and Relay state.
 - `/on`: Switches the relay ON manually.
 - `/off`: Switches the relay OFF manually.
-
 **Evidence:**
+
+![alt text](<images/Screenshot 2026-01-24 at 9.24.19 at night.png>)
+![alt text](<images/Screenshot 2026-01-24 at 9.24.19 at night.png>)
 
 ![Bot Commands Status](images/your_task3_photo.jpg)
 
@@ -68,7 +70,7 @@ The system processes incoming messages to handle the following:
 
 **Evidence:**
 
-[Link to Demo Video (60-90s)](https://your-video-link-here.com)
+[Link to Demo Video](https://drive.google.com/file/d/1mBqq3H0fzm7Oal4ADJzZGJF92i7qAZw2/view?usp=sharing)
 
 ---
 
@@ -77,8 +79,7 @@ This diagram illustrates the state machine and loop logic used in the firmware.
 
 **Evidence:**
 
-
-![Flowchart](images/your_flowchart.png)
+![Flowchart](images/photo_2026-01-24_21-09-46.jpg)
 
 ---
 
