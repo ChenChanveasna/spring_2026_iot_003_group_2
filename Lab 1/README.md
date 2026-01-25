@@ -43,7 +43,7 @@ The DHT22 is sampled every 5 seconds. Data is formatted to 2 decimal places and 
 ![Serial Monitor](images/photo_2026-01-22_14-10-43.jpg)
 
 ### Task 2: Telegram Send
-Implementation of the `send_message()` function using `uRequests`. A test message was successfully posted to the Telegram group.
+Implementation of the core Telegram communication link using the `urequests` library. This task focuses on establishing a secure connection between the ESP32 and the Telegram Bot API to allow for remote data transmission.
 
 **Evidence:**
 
