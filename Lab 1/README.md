@@ -29,7 +29,7 @@ This project implements a smart IoT monitoring node using an **ESP32**, a **DHT2
 ### Wiring Diagram/Photo
 **Evidence:**
 
-![Wiring Diagram](images/your_wiring_photo.jpg)
+![Wiring Diagram](<images/Screenshot 2026-01-25 at 10.29.19 in the morning.png>)
 
 ---
 
@@ -55,12 +55,11 @@ The system processes incoming messages to handle the following:
 - `/status`: Replies with current Temperature, Humidity, and Relay state.
 - `/on`: Switches the relay ON manually.
 - `/off`: Switches the relay OFF manually.
+
 **Evidence:**
 
 ![alt text](<images/Screenshot 2026-01-24 at 9.24.19 at night.png>)
 ![alt text](<images/Screenshot 2026-01-24 at 9.24.19 at night.png>)
-
-![Bot Commands Status](images/your_task3_photo.jpg)
 
 ### Task 4: Threshold Logic & Alerts
 - **State A:** $T < 30^{\circ}C$. System is silent.
@@ -69,7 +68,7 @@ The system processes incoming messages to handle the following:
 - **State D:** When $T < 30^{\circ}C$, Relay turns **OFF** automatically + "Auto-OFF" notice sent.
 
 **Evidence:**
-
+    
 [Link to Demo Video](https://drive.google.com/file/d/1mBqq3H0fzm7Oal4ADJzZGJF92i7qAZw2/view?usp=sharing)
 
 ---
@@ -79,18 +78,11 @@ This diagram illustrates the state machine and loop logic used in the firmware.
 
 **Evidence:**
 
-![Flowchart](images/photo_2026-01-24_21-09-46.jpg)
-
----
-
-## 6. Robustness (Task 5)
-- **Wi-Fi:** The system monitors the connection and auto-reconnects if the signal is dropped.
-- **API Handling:** Telegram HTTP errors are caught via `try...except` to prevent script crashes.
-- **Sensor Safety:** `DHT OSError` exceptions are handled by skipping the specific cycle rather than stopping the program.
+![Flowchart](images/photo_2026-01-25_10-24-10.jpg)
 
 ---
 
 ## 7. How to Setup
-1.  **Configure Credentials:** Update `main.py` with your Wi-Fi SSID, Password, Telegram Token, and Chat ID.
+1.  **Configure Credentials:** Update each `task.py` with your Wi-Fi SSID, Password, Telegram Token, and Chat ID.
 2.  **Upload Files:** Use Thonny to upload the code to the ESP32.
 3.  **Run:** Reset the board and monitor the serial output for connection status.
