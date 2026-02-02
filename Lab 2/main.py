@@ -153,7 +153,7 @@ def web_page(temp, hum, dist):
 <body>
     <h1>ESP32 Sensor Dashboard</h1>
 
-    <div class="container">
+ <div class="container">
 
         <div class="card">
             <div class="label">Temperature</div>
