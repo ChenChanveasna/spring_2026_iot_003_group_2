@@ -3,7 +3,7 @@ import socket
 from machine import Pin, I2C, time_pulse_us
 import dht
 import time
-from machine_i2c_lcd import I2cLcd  # Verify if your file is named exactly this
+from machine_i2c_lcd import I2cLcd
 
 # ==============================
 # LED SETUP
@@ -15,7 +15,6 @@ led.off()
 # I2C LCD SETUP
 # ==============================
 i2c = I2C(0, scl=Pin(22), sda=Pin(21), freq=400000)
-# Most LCDs use 0x27 or 0x3F address
 lcd = I2cLcd(i2c, 0x27, 2, 16)
 lcd.putstr("System Ready")
 
@@ -64,14 +63,11 @@ def read_distance():
     return round(distance, 2)
 
 def update_lcd_display(text):
-    """Handles standard display and long-text scrolling"""
-    # URL decoding (fixes spaces and symbols)
     text = text.replace('+', ' ').replace('%20', ' ')
     lcd.clear()
     if len(text) <= 16:
         lcd.putstr(text)
     else:
-        # Scrolling logic for long text
         lcd.putstr(text[:16])
         time.sleep(1)
         for i in range(len(text) - 15):
@@ -82,24 +78,24 @@ def update_lcd_display(text):
 # ==============================
 # HTML PAGE
 # ==============================
-def web_page(temp, hum, dist):
-    html = f"""
+def web_page():
+    html = """
 <html>
 <head>
     <title>ESP32 Sensor Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body {{ font-family: Arial, sans-serif; background: #f3f4f6; text-align: center; padding: 20px; }}
-        .container {{ display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }}
-        .card {{ background: white; padding: 20px; width: 260px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }}
-        .label {{ color: #555; margin-bottom: 8px; }}
-        .value {{ font-size: 24px; font-weight: bold; padding-bottom: 12px; }}
-        .btn {{ width: 170px; height: 45px; font-size: 16px; border: none; border-radius: 8px; cursor: pointer; margin: 8px; color: white; }}
-        .on {{ background: #22c55e; width: 80px; }}
-        .off {{ background: #ef4444; width: 80px; }}
-        .button-blue {{ background: #151b54; }}
-        .input-area {{ margin-top: 30px; background: white; padding: 20px; border-radius: 12px; display: inline-block; }}
-        input[type=text] {{ padding: 10px; width: 200px; border-radius: 5px; border: 1px solid #ccc; }}
+        body { font-family: Arial, sans-serif; background: #f3f4f6; text-align: center; padding: 20px; }
+        .container { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
+        .card { background: white; padding: 20px; width: 260px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .label { color: #555; margin-bottom: 8px; }
+        .value { font-size: 24px; font-weight: bold; padding-bottom: 12px; }
+        .btn { width: 80px; height: 45px; font-size: 16px; border: none; border-radius: 8px; cursor: pointer; margin: 8px; color: white; }
+        .on { background: #22c55e; }
+        .off { background: #ef4444; }
+        .button-blue { background: #151b54; }
+        .input-area { margin-top: 30px; background: white; padding: 20px; border-radius: 12px; display: inline-block; }
+        input[type=text] { padding: 10px; width: 200px; border-radius: 5px; border: 1px solid #ccc; }
     </style>
 </head>
 <body>
@@ -107,13 +103,13 @@ def web_page(temp, hum, dist):
     <div class="container">
         <div class="card">
             <div class="label">Temperature</div>
-            <div class="value">{temp} C</div>
-            <a href="/temp"><button class="btn button-blue">Show Temperature</button></a>
+            <div class="value" id="temp">-- C</div>
+            <a href="/temp"><button class="btn button-blue">Show Temp</button></a>
         </div>
         <div class="card">
             <div class="label">Distance</div>
-            <div class="value">{dist} cm</div>
-            <a href="/dist"><button class="btn button-blue">Show Distance</button></a>
+            <div class="value" id="dist">-- cm</div>
+            <a href="/dist"><button class="btn button-blue">Show Dist</button></a>
         </div>
         <div class="card">
             <div class="label">LED Control</div>
@@ -131,6 +127,21 @@ def web_page(temp, hum, dist):
             <button type="submit" class="btn button-blue" style="width: 100px;">Send</button>
         </form>
     </div>
+
+    <script>
+        async function fetchSensorData() {
+            try {
+                const response = await fetch('/data');
+                const data = await response.json();
+                document.getElementById('temp').innerText = data.temp + " C";
+                document.getElementById('dist').innerText = data.dist + " cm";
+            } catch (err) {
+                console.log("Error fetching sensor data:", err);
+            }
+        }
+        setInterval(fetchSensorData, 2000); // Update every 2 seconds
+        window.onload = fetchSensorData;
+    </script>
 </body>
 </html>
 """
@@ -154,32 +165,43 @@ while True:
     try:
         conn, addr = s.accept()
         request = conn.recv(1024).decode()
+        
+        if "GET /favicon.ico" in request:
+            conn.close()
+            continue
 
-        # Action Handling
+        # LED control
         if "/on" in request:
             led.on()
         elif "/off" in request:
             led.off()
+        # LCD messages
         elif "/temp" in request:
             t, h = read_dht()
-            update_lcd_display(f"Temp: {t}C")
+            update_lcd_display("Temp: {}C".format(t))
         elif "/dist" in request:
             d = read_distance()
-            update_lcd_display(f"Dist: {d}cm")
+            update_lcd_display("Dist: {}cm".format(d))
         elif "/lcd?msg=" in request:
-            # Extracting custom text
             start = request.find("msg=") + 4
             end = request.find(" ", start)
-            msg = request[start:end]
+            msg = request[start:end] if end != -1 else request[start:]
             update_lcd_display(msg)
 
-        # Get current data for web dashboard
-        temp, hum = read_dht()
-        dist = read_distance()
-        response = web_page(temp, hum, dist)
+        # Serve JSON for live updates
+        if "/data" in request:
+            temp, hum = read_dht()
+            dist = read_distance()
+            response = '{{"temp": "{}", "dist": "{}"}}'.format(temp, dist)
+            conn.send("HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nConnection: close\r\n\r\n")
+            conn.sendall(response.encode())
+        else:
+            # Serve full HTML page
+            response = web_page()
+            conn.send("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n")
+            conn.sendall(response.encode())
 
-        conn.send("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n")
-        conn.sendall(response)
         conn.close()
     except Exception as e:
         print("Error:", e)
+
