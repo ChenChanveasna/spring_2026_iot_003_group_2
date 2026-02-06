@@ -1,8 +1,12 @@
-### 1. Project Overview
+## IOT Group 2
+
+# LAB2: IoT Webserver with LED, Sensors, and LCD Control
+
+## 1. Project Overview
 
 This project implements an integrated IoT system using an ESP32 and MicroPython. It features a web-based dashboard that allows real-time hardware interaction. Users can control an onboard LED, monitor environmental data (Temperature/Humidity/Distance), and push custom text or sensor readings to an I2C-connected LCD.
 
-### 2. Learning Outcomes
+## 2. Learning Outcomes
 
 Deployment of a MicroPython-based asynchronous webserver.
 
@@ -12,7 +16,7 @@ I2C communication with a 16x2 LCD display.
 
 Bidirectional data flow between a Web UI and physical hardware.
 
-### 3. Hardware Requirements
+## 3. Hardware Requirements
 
 ESP32 Dev Board (Flashed with MicroPython)
 
@@ -26,11 +30,11 @@ LED (External or Onboard GPIO2)
 
 Jumper wires & Breadboard
 
-### 4. Wiring Diagram
+## 4. Wiring Diagram
 
 ComponentESP32 PinNoteLEDGPIO 2Series resistor required for external LEDDHT11 DataGPIO 4Pull-up resistor may be neededUltrasonic TriggerGPIO 5OutputUltrasonic EchoGPIO 18Input (Use voltage divider for 3.3V)I2C SDA (LCD)GPIO 21Standard I2C DataI2C SCL (LCD)GPIO 22Standard I2C ClockVCC5V / VINMost LCDs/HC-SR04 require 5VGNDGNDCommon Ground
 
-### 5. Setup Instructions
+## 5. Setup Instructions
 
 Prerequisites
 
@@ -50,7 +54,7 @@ Deploy: Upload main.py to the board and run it.
 
 Access the Server: Note the IP address printed in the Thonny terminal (e.g., 192.168.1.100). Open this IP in any web browser on the same network.
 
-### 6. Usage Instructions
+## 6. Usage Instructions
 
 Web Dashboard Controls
 
@@ -69,5 +73,6 @@ Custom Text: Type a message in the provided textbox and click Send. The text wil
 Note: If the text is longer than 16 characters, it will automatically scroll.
 
 
-### 7. Evidence & Screenshots
+## 7. Evidence & Screenshots
+
 
