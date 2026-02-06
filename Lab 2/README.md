@@ -1,4 +1,4 @@
-1. Project Overview
+##1. Project Overview
 
 This project implements an integrated IoT system using an ESP32 and MicroPython. It features a web-based dashboard that allows real-time hardware interaction. Users can control an onboard LED, monitor environmental data (Temperature/Humidity/Distance), and push custom text or sensor readings to an I2C-connected LCD.
 
@@ -67,5 +67,6 @@ Show Temp: Pressing this button sends the DHT11 temperature to Line 2 of the LCD
 Custom Text: Type a message in the provided textbox and click Send. The text will appear on the LCD.
 
 Note: If the text is longer than 16 characters, it will automatically scroll.
+
 
 7. Evidence & Screenshots
