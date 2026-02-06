@@ -26,17 +26,9 @@ HC-SR04 (Ultrasonic Sensor)
 
 LCD 16x2 with I2C Backpack
 
-LED (External or Onboard GPIO2)
-
-Jumper wires & Breadboard
-
-## 4. Wiring Diagram
-
-ComponentESP32 PinNoteLEDGPIO 2Series resistor required for external LEDDHT11 DataGPIO 4Pull-up resistor may be neededUltrasonic TriggerGPIO 5OutputUltrasonic EchoGPIO 18Input (Use voltage divider for 3.3V)I2C SDA (LCD)GPIO 21Standard I2C DataI2C SCL (LCD)GPIO 22Standard I2C ClockVCC5V / VINMost LCDs/HC-SR04 require 5VGNDGNDCommon Ground
-
 ## 5. Setup Instructions
 
-Prerequisites
+### Prerequisites
 
 Install Thonny IDE.
 
@@ -44,7 +36,7 @@ Ensure your ESP32 is flashed with the latest MicroPython firmware.
 
 Clone this repository or download the source files.
 
-Installation
+### Installation
 
 Upload Library Files: Upload lcd_api.py and i2c_lcd.py (drivers) to the ESP32 root directory.
 
@@ -70,9 +62,10 @@ Show Temp: Pressing this button sends the DHT11 temperature to Line 2 of the LCD
 
 Custom Text: Type a message in the provided textbox and click Send. The text will appear on the LCD.
 
-Note: If the text is longer than 16 characters, it will automatically scroll.
+### Note: If the text is longer than 16 characters, it will automatically scroll.
 
 
 ## 7. Evidence & Screenshots
+
 
 
