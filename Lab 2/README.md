@@ -38,10 +38,10 @@ The project demonstrates integration of:
 
 | Component       | ESP32 Pin |
 | --------------- | --------- |
-| LED             | GPI02     |
-| DHT11 Data      | GPI23     |
-| Ultrasonic TRIG | GPI33     |
-| Ultrasonic ECHO | GPI34    |
+| LED             | GPIO2     |
+| DHT11 Data      | GPIO23     |
+| Ultrasonic TRIG | GPIO33     |
+| Ultrasonic ECHO | GPIO34    |
 | LCD SDA         | GPIO21    |
 | LCD SCL         | GPIO22    |
 | LCD VCC         | 5V        |
