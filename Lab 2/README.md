@@ -49,9 +49,7 @@ The project demonstrates integration of:
 
 **Evidence:**
 
-![Wiring Diagram](images/wiring_diagram.jpg)
-*or*
-![Hardware Setup](images/hardware_photo.jpg)
+![Wiring Diagram](./Documentations/image_2026-02-07_222556912.png)
 
 ---
 
