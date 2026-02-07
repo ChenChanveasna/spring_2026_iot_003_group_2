@@ -62,10 +62,12 @@ Show Temp: Pressing this button sends the DHT11 temperature to Line 2 of the LCD
 
 Custom Text: Type a message in the provided textbox and click Send. The text will appear on the LCD.
 
-### Note: If the text is longer than 16 characters, it will automatically scroll.
-
-
 ## 7. Evidence & Screenshots
 
+### Task 3: 
+https://youtu.be/kPWdi5Bicsc 
+
+### Task 4:
+https://youtu.be/8gX73U0h3CU
 
 
