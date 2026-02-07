@@ -128,22 +128,8 @@ If the text exceeds **16 characters**, it scrolls automatically.
 
 ---
 
-### Task 5: Documentation (30 pts)
-
-This repository includes:
-
-* Complete source code
-* Wiring diagram / hardware photo
-* Setup and usage instructions
-* Screenshots and demo videos for all tasks
-
-**Evidence:**
-
-📂 GitHub Repository with:
-
-* `/Documentations`
-* `README.md`
-* `main.py` (code)
+### Flowchart
+![Flowchart](./Documentations/photo_2026-02-07_22-03-34.jpg)
 
 ---
 
