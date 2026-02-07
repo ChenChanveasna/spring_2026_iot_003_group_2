@@ -52,6 +52,10 @@ print("Connected! IP:", ip)
 temperature = "N/A"
 distance = "N/A"
 lcd_mode = "sensor"  # or "custom"
+scroll_index = 0
+last_scroll_time = 0
+SCROLL_DELAY = 200  # in ms, adjust speed
+
 
 
 # ==============================
@@ -99,9 +103,44 @@ def update_lcd_sensor(text, sensor_mode=None):
         lcd.putstr(text)
 
     
+custom_text = ""  # global
+
 def update_lcd_custom(text):
+    global custom_text, scroll_index, last_scroll_time, lcd_mode
+
+    lcd_mode = "custom"
+    custom_text = text.replace("+", " ").replace("%20", " ")
+    scroll_index = 0
+    last_scroll_time = time.ticks_ms()
+
     lcd.clear()
-    lcd.putstr(text)
+    # Display first 16 chars (initial)
+    lcd.putstr(custom_text[:16])
+
+def scroll_custom_text():
+    global scroll_index, last_scroll_time
+
+    if lcd_mode != "custom":
+        return
+
+    if len(custom_text) <= 16:
+        return  # no need to scroll
+
+    now = time.ticks_ms()
+    if time.ticks_diff(now, last_scroll_time) < SCROLL_DELAY:
+        return
+
+    last_scroll_time = now
+
+    # Add padding for smooth wrap-around
+    padded = custom_text + "   "
+    view = padded[scroll_index:scroll_index + 16]
+
+    lcd.move_to(0, 0)
+    lcd.putstr(view)
+
+    scroll_index = (scroll_index + 1) % len(padded)
+
 # ==============================
 # HTML PAGE
 # ==============================
@@ -191,6 +230,8 @@ print("Web server running...")
 while True:
     conn, addr = s.accept()
     request = conn.recv(1024).decode()
+    
+    scroll_custom_text()
 
     if "favicon.ico" in request:
         conn.close()
