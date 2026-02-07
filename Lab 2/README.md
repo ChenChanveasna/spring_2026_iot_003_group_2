@@ -2,88 +2,168 @@
 
 # LAB2: IoT Webserver with LED, Sensors, and LCD Control
 
+# ESP32 Web Server & Sensor Control Assignment
+
 ## 1. Project Overview
 
-This project implements an integrated IoT system using an ESP32 and MicroPython. It features a web-based dashboard that allows real-time hardware interaction. Users can control an onboard LED, monitor environmental data (Temperature/Humidity/Distance), and push custom text or sensor readings to an I2C-connected LCD.
+This project implements a web-based control and monitoring system using an **ESP32**.
+The system allows users to control an LED, read sensor data, and display information on an LCD via a browser interface connected over Wi-Fi.
 
-## 2. Learning Outcomes
+The project demonstrates integration of:
 
-Deployment of a MicroPython-based asynchronous webserver.
-
-Integration of DHT11 (Temperature) and HC-SR04 (Ultrasonic) sensors.
-
-I2C communication with a 16x2 LCD display.
-
-Bidirectional data flow between a Web UI and physical hardware.
-
-## 3. Hardware Requirements
-
-ESP32 Dev Board (Flashed with MicroPython)
-
-DHT11 (Temperature/Humidity)
-
-HC-SR04 (Ultrasonic Sensor)
-
-LCD 16x2 with I2C Backpack
-
-## 4. Flow Chart
-
-![Alternative Text](Documentations/photo_2026-02-07_22-03-34.jpg)
+* ESP32 Web Server
+* GPIO control
+* DHT11 temperature sensor
+* Ultrasonic distance sensor
+* I2C LCD display
+* Real-time browser interaction
 
 ---
 
-## 5. Wiring Instructions
+## 2. Hardware Components
 
-![Alternative Text](Documentations/image_2026-02-07_222556912.png)
+* ESP32 Dev Module
+* DHT11 Temperature Sensor
+* Ultrasonic Sensor (HC-SR04)
+* I2C 16×2 LCD
+* LED (GPIO2)
+* Push Buttons (virtual, web-based)
+* Breadboard & Jumper Wires
 
 ---
 
-## 6. Setup Instructions
+## 3. Wiring Diagram
 
-### Prerequisites
+**ESP32 Pin Connections:**
 
-Install Thonny IDE.
+| Component       | ESP32 Pin |
+| --------------- | --------- |
+| LED             | GPI02     |
+| DHT11 Data      | GPI23     |
+| Ultrasonic TRIG | GPI33     |
+| Ultrasonic ECHO | GPI34    |
+| LCD SDA         | GPIO21    |
+| LCD SCL         | GPIO22    |
+| LCD VCC         | 5V        |
+| LCD GND         | GND       |
 
-Ensure your ESP32 is flashed with the latest MicroPython firmware.
+**Evidence:**
 
-Clone this repository or download the source files.
+![Wiring Diagram](./Documentations/image_2026-02-07_222556912.png)
 
-### Installation
+---
 
-Upload Library Files: Upload lcd_api.py and i2c_lcd.py (drivers) to the ESP32 root directory.
+## 4. Setup Instructions
 
-Configure Wi-Fi: Open main.py and update the ssid and password variables with your network credentials.
+### 4.1 Flashing & Running the Code
 
-Deploy: Upload main.py to the board and run it.
+1. Install **MicroPython** on the ESP32.
+2. Upload all project files to the ESP32.
+3. Edit Wi-Fi credentials in `main.py`:
 
-Access the Server: Note the IP address printed in the Thonny terminal (e.g., 192.168.1.100). Open this IP in any web browser on the same network.
+```python
+ssid = "YOUR_WIFI_NAME"
+password = "YOUR_WIFI_PASSWORD"
+```
 
-## 7. Usage Instructions
+4. Reset the ESP32.
+5. Check the **Serial Monitor** for the assigned IP address.
+6. Open the IP address in a web browser.
 
-Web Dashboard Controls
+---
 
-LED Control: Click the ON or OFF buttons to toggle the LED on GPIO2.
+## 5. Tasks & Evidence
 
-Sensor Monitoring: The web page displays real-time Temperature ($^\circ$C) and Distance (cm). The values refresh automatically.
+### Task 1: LED Control (15 pts)
 
-LCD Interaction:
+Two buttons (**ON** and **OFF**) are provided on the web page.
+When clicked, the LED connected to **GPIO2** turns ON or OFF immediately.
 
-Show Distance: Pressing this button sends the current ultrasonic reading to Line 1 of the LCD.
+**Evidence:**
 
-Show Temp: Pressing this button sends the DHT11 temperature to Line 2 of the LCD.
+[Link to LED Control Demo Video](https://drive.google.com/file/d/1B84hDKtzFPPIz-YVqmLzG3v_qyBJg7Xk/view?usp=sharing)  
 
-Custom Text: Type a message in the provided textbox and click Send. The text will appear on the LCD.
+---
 
-## 8. Evidence & Screenshots
+### Task 2: Sensor Read (15 pts)
 
-### Task 3: 
-https://youtu.be/kPWdi5Bicsc 
+The ESP32 reads:
 
-### Task 4:
-https://youtu.be/8gX73U0h3CU
+* **Temperature** from the DHT11 sensor
+* **Distance** from the ultrasonic sensor
+
+Sensor values are displayed on the web page and refreshed every **1–2 seconds**.
+
+**Evidence:**
+
+![Sensor Values Web Page](Documentations/photo_2026-02-07_23-35-55.jpg)
+
+---
+
+### Task 3: Sensor → LCD Display (20 pts)
+
+Two buttons are added to the web interface:
+
+* **Show Distance** → Displays distance on **LCD line 1**
+* **Show Temp** → Displays temperature on **LCD line 2**
+
+The LCD updates instantly after each button press.
+
+**Evidence:**
+
+[Sensor to LCD Display](https://youtu.be/kPWdi5Bicsc )
 
 
+---
 
+### Task 4: Textbox → LCD (20 pts)
 
+A textbox and **Send** button allow the user to enter custom text from the browser.
+The text is displayed on the LCD.
+If the text exceeds **16 characters**, it scrolls automatically.
 
+**Evidence:**
 
+[Link to Textbox-to-LCD Demo Video](https://drive.google.com/file/d/1X9FJCtU55zQWfhlHr3nd1oqvAWNf5fDZ/view?usp=sharing)
+
+---
+
+### Task 5: Documentation (30 pts)
+
+This repository includes:
+
+* Complete source code
+* Wiring diagram / hardware photo
+* Setup and usage instructions
+* Screenshots and demo videos for all tasks
+
+**Evidence:**
+
+📂 GitHub Repository with:
+
+* `/Documentations`
+* `README.md`
+* `main.py` (code)
+
+---
+
+## 6. Usage Instructions
+
+* **LED Control:**
+  Click **ON** or **OFF** buttons on the web page.
+
+* **Sensor Monitoring:**
+  View live temperature and distance values on the web page.
+
+* **LCD Display:**
+  Use **Show Distance** or **Show Temp** buttons.
+
+* **Custom Text:**
+  Type text into the textbox and press **Send** to display it on the LCD.
+
+---
+
+## 7. Conclusion
+
+This project successfully demonstrates real-time control and monitoring of hardware components using an ESP32 web server.
+It integrates sensors, LCD output, and user interaction through a browser, fulfilling all assignment requirements.
