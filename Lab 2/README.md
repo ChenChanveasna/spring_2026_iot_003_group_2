@@ -38,10 +38,10 @@ The project demonstrates integration of:
 
 | Component       | ESP32 Pin |
 | --------------- | --------- |
-| LED             | GPIO2     |
-| DHT11 Data      | GPIO4     |
-| Ultrasonic TRIG | GPIO5     |
-| Ultrasonic ECHO | GPIO18    |
+| LED             | GPI02     |
+| DHT11 Data      | GPI23     |
+| Ultrasonic TRIG | GPI33     |
+| Ultrasonic ECHO | GPI34    |
 | LCD SDA         | GPIO21    |
 | LCD SCL         | GPIO22    |
 | LCD VCC         | 5V        |
@@ -124,7 +124,7 @@ If the text exceeds **16 characters**, it scrolls automatically.
 
 **Evidence:**
 
-[Link to Textbox-to-LCD Demo Video](https://youtu.be/8gX73U0h3CU)
+[Link to Textbox-to-LCD Demo Video](https://drive.google.com/file/d/1X9FJCtU55zQWfhlHr3nd1oqvAWNf5fDZ/view?usp=sharing)
 
 ---
 
