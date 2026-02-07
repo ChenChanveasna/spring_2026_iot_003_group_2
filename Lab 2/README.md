@@ -26,7 +26,14 @@ HC-SR04 (Ultrasonic Sensor)
 
 LCD 16x2 with I2C Backpack
 
-## 5. Setup Instructions
+## 4. Flow Chart
+
+![Alternative Text](Documentation/photo_2026-02-07_22-03-34.jpg)
+
+## 5. Wiring Instructions
+
+
+## 6. Setup Instructions
 
 ### Prerequisites
 
@@ -46,7 +53,7 @@ Deploy: Upload main.py to the board and run it.
 
 Access the Server: Note the IP address printed in the Thonny terminal (e.g., 192.168.1.100). Open this IP in any web browser on the same network.
 
-## 6. Usage Instructions
+## 7. Usage Instructions
 
 Web Dashboard Controls
 
@@ -62,12 +69,13 @@ Show Temp: Pressing this button sends the DHT11 temperature to Line 2 of the LCD
 
 Custom Text: Type a message in the provided textbox and click Send. The text will appear on the LCD.
 
-## 7. Evidence & Screenshots
+## 8. Evidence & Screenshots
 
 ### Task 3: 
 https://youtu.be/kPWdi5Bicsc 
 
 ### Task 4:
 https://youtu.be/8gX73U0h3CU
+
 
 
