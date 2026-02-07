@@ -32,6 +32,7 @@ LCD 16x2 with I2C Backpack
 
 ## 5. Wiring Instructions
 
+![Alternative Text](Documentations/image_2026-02-07_222556912.png)
 
 ## 6. Setup Instructions
 
@@ -76,6 +77,7 @@ https://youtu.be/kPWdi5Bicsc
 
 ### Task 4:
 https://youtu.be/8gX73U0h3CU
+
 
 
 
