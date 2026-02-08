@@ -37,15 +37,13 @@ The system integrates an IR sensor for object detection, a servo motor forphysic
 |                   | DIO              | **D16**   |
 |                   | VCC              | **5V**    |
 |                   | GND              | **GND**   |
-| :---              | :---             | :---      |
 | Servo Motor       | Signal (Yellow)  | **D13**   |
 |                   | 5V (Red)         | **5V**    |
 |                   | GND (Brown)      | **GND**   |
-| :---              | :---             | :---      |
 | IP Sensor         | OUT              | **D12**   |
 |                   | GND              | **GND**   |
 |                   | VCC              | **VCC**   |
-| :---              | :---             | :---      |
+| ----------------- | ---------------- | --------- |
 
 ![Wiring Diagram](Images/image.png)
 
