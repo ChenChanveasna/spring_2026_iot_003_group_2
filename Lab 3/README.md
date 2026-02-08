@@ -32,7 +32,7 @@ The system integrates an IR sensor for object detection, a servo motor forphysic
 **ESP32 Pin Connections:**
 
 | Component         | Component Pin    | ESP32 Pin |
-| :---------------: | :--------------: | :-------: |
+| :---------------- | :--------------- | :-------- |
 | TM1637 Display    | CLK              | **D17**   |
 |                   | DIO              | **D16**   |
 |                   | VCC              | **5V**    |
