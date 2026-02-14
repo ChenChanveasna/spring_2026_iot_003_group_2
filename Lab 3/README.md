@@ -61,7 +61,7 @@ Evidence:
 ---
 
 ### Task 2: Servo Motor Control via Blynk
-- Servo Motor will according to the angle control (0 - 180 degrees) via the slider control in the blynk web interface.
+- Servo Motor will move according to the angle control (0 - 180 degrees) via the slider control in the blynk web interface.
  
 Evidence: [Link To Servo Slider Control Demo](https://youtube.com/shorts/Fi4Dmf5myhE?feature=share )
 ---
