@@ -94,5 +94,5 @@ Evidence: [Link To The Manual Switch Demo](https://youtube.com/shorts/vH_d3Og69e
 
 ---
 
-## 7. Conclusion
+## 5. Conclusion
 This project emphasizes interaction between sensors, actuators, cloud-based control, and localdisplay, reinforcing event-driven and IoT system design concepts.
