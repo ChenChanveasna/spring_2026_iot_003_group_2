@@ -88,6 +88,7 @@ Evidence: [Link To TM1637 Display Demo Video](https://youtube.com/shorts/eUVaTI0
 - On/Off for the manual mode from Blynk Switch widget in the web interface
 - When the switch is **OFF**: *automatic mode* is switched to *manual mode*.
 - When the switch is **ON**: *manual mode* is switched to *automatic mode*.
+
 **Note**: *OFF* is **Manual Mode**, *ON* is **Automatic Mode**.
 
 Evidence: [Link To The Manual Switch Demo](https://youtube.com/shorts/vH_d3Og69e4?feature=share )
