@@ -55,7 +55,7 @@ The system integrates an IR sensor for object detection, a servo motor forphysic
 - Object Detection from IR Sensor
 - Blynk for the web interface display of Detected/Not Detected
 
-Evidence:
+Evidence: 
 
 ![Screenshots](Images/LAB3_Task1_IR_Sensor_Reading.png)
 ---
@@ -63,32 +63,29 @@ Evidence:
 ### Task 2: Servo Motor Control via Blynk
 - Servo Motor will according to the angle control (0 - 180 degrees) via the slider control in the blynk web interface.
  
-Evidence:
-
-[Link To Servo Slider Control Demo](https://youtube.com/shorts/Fi4Dmf5myhE?feature=share )
+Evidence: [Link To Servo Slider Control Demo](https://youtube.com/shorts/Fi4Dmf5myhE?feature=share )
 ---
 
 ### Task 3: Automatic IR - Servo Action
 - Object Detection from IR Sensor
 - Servo Motor is used to show an example of an Open/Closed gate when IR Sensor Detects an object.
 
-Evidence:
-
-[Link To IR & Servo Demo](https://youtube.com/shorts/IgS4cE8_J9g?feature=share )
+Evidence: [Link To IR & Servo Demo](https://youtube.com/shorts/IgS4cE8_J9g?feature=share )
 ---
 
 ### Task: 4 TM1637 Display Integration
 - TM1637 to count the number of times the IR Sensor deteced an object
 - The Blynk platform web interface will display the same number counted by TM1637 via its Label widget
   
-Evidence:
-
-[Link To TM1637 Display Demo Video](https://youtube.com/shorts/eUVaTI0jt5s?feature=share )
+Evidence: [Link To TM1637 Display Demo Video](https://youtube.com/shorts/eUVaTI0jt5s?feature=share )
 ---
 
 ### Task 5: Manual Override Mode
-
-Evidence:
+- On/Off for the manual mode from Blynk Switch widget in the web interface
+- When the switch is **OFF**: *automatic mode* is switched to *manual mode*.
+- When the switch is **ON**: *manual mode* is switched to *automatic mode*.
+**Note**: *OFF* is Manual Mode, *ON* is *Automatic Mode*.
+Evidence: [Link To The Manual Switch Demo](https://youtube.com/shorts/vH_d3Og69e4?feature=share )
 
 ---
 
