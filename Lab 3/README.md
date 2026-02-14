@@ -55,21 +55,25 @@ The system integrates an IR sensor for object detection, a servo motor forphysic
 - Object Detection from IR Sensor
 - Blynk for the web interface display of Detected/Not Detected
 
-**Evidence:**
+Evidence:
+
 ![Screenshots](Images/LAB3_Task1_IR_Sensor_Reading.png)
 ---
 
 ### Task 2: Servo Motor Control via Blynk
 - Servo Motor will according to the angle control (0 - 180 degrees) via the slider control in the blynk web interface.
  
-**Evidence:**
+Evidence:
+
 [Link To Servo Slider Control Demo](https://youtube.com/shorts/Fi4Dmf5myhE?feature=share )
 ---
 
 ### Task 3: Automatic IR - Servo Action
 - Object Detection from IR Sensor
 - Servo Motor is used to show an example of an Open/Closed gate when IR Sensor Detects an object.
-**Evidence:**
+
+Evidence:
+
 [Link To IR & Servo Demo](https://youtube.com/shorts/IgS4cE8_J9g?feature=share )
 ---
 
@@ -77,13 +81,14 @@ The system integrates an IR sensor for object detection, a servo motor forphysic
 - TM1637 to count the number of times the IR Sensor deteced an object
 - The Blynk platform web interface will display the same number counted by TM1637 via its Label widget
   
-**Evidence:**
+Evidence:
+
 [Link To TM1637 Display Demo Video](https://youtube.com/shorts/eUVaTI0jt5s?feature=share )
 ---
 
 ### Task 5: Manual Override Mode
 
-**Evidence:**
+Evidence:
 
 ---
 
