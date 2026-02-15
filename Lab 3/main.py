@@ -37,13 +37,24 @@ tm = TM1637(
 # WIFI CONNECT
 # =====================================================
 wifi = network.WLAN(network.STA_IF)
-wifi.active(True)
-wifi.connect(WIFI_SSID, WIFI_PASS)
-
-print("Connecting to WiFi...")
-while not wifi.isconnected():
-    time.sleep(1)
-print("WiFi connected:", wifi.ifconfig())
+def connect_wifi():
+    wifi.active(True)
+    
+    if not wifi.isconnected():
+        print("Connecting to WiFi...")
+        wifi.connect(WIFI_SSID, WIFI_PASS)
+        
+        # Timeout after 10 seconds so it doesn't hang forever
+        timeout = 10
+        while not wifi.isconnected() and timeout > 0:
+            time.sleep(1)
+            timeout -= 1
+            
+    if wifi.isconnected():
+        print("Connected! IP:", wifi.ifconfig()[0])
+    else:
+        print("Connection failed.")
+connect_wifi()
 
 # =====================================================
 # HELPER FUNCTIONS
@@ -88,6 +99,7 @@ def angle_to_duty(angle):
 # STATE VARIABLES
 # =====================================================
 count = 0
+servo.duty(angle_to_duty(0))  # Start at 0 degrees
 prev_ir = ir.value()
 
 tm.show_number(0)
@@ -97,6 +109,10 @@ print("System ready")
 # MAIN LOOP
 # =====================================================
 while True:
+    if not wifi.isconnected():
+        print("WiFi lost. Reconnecting...")
+        connect_wifi()
+        
     current_ir = ir.value()
     detected = (current_ir == 0)
 

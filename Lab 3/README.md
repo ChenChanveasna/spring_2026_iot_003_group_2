@@ -95,8 +95,9 @@ Evidence: [Link To The Manual Switch Demo](https://youtube.com/shorts/vH_d3Og69e
 
 ---
 
-### Flowchart
-![Flowchart](./Images/diagram.png)
+### Flowchart & Sequence Diagram
+![Flowchart](./Images/flowchart.png)
+![Sequence Diagram](./Images/diagram.png)
 
 ---
 
