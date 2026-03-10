@@ -45,7 +45,7 @@ will be stored in InfluxDB and visualized in Grafana.
 |                   | GND              | **GND**   |
 |                   | VCC              | **VCC**   |
 
-
+![Wiring Diagram](<images/Screenshot 2026-03-10 at 10.19.09 at night.png>)
 
 
 ---
@@ -54,31 +54,48 @@ will be stored in InfluxDB and visualized in Grafana.
 
 ### Task 1: Gas Filtering (Moving Average)
 
+* **Implementation**: Used a buffer of 5 readings (NUM_READINGS = 5) to calculate a rolling average of the MQ-5 signal.
 
-Evidence: 
+* **Result**: Effectively smoothed raw ADC spikes, providing a stable input for risk classification.
+
+**Evidence**: 
+
+![Task 1](images/image_2026-03-09_21-08-28.png)
 
 ---
 
 ### Task 2: Gas Risk Classification
 
+* **Logic**: Created classify_gas() function using thresholds: <2100 (Safe), 2100-2600 (Warning), and >2600 (Danger).
+
+* **Edge Processing**: Translates raw sensor data into actionable status strings before transmission.
  
-Evidence: 
+**Evidence**: 
+![Task 2](images/photo_2026-03-10_21-26-09.jpg)
 
 ---
 
 ### Task 3: Fever Detection Logic
 
-Evidence:
+* **Logic**: Built fever_detection() to flag temperatures $\ge$ 32.5°C as a potential fever 
+(Value: 1).
+
+* **Integration**: Combines MLX90614 object temperature with real-time timestamps from the DS3231 RTC.
+
+**Evidence**:
+![Task 3](images/image_2026-03-09_21-30-14.png)
 
 ---
 
 ### Task 4: Pressure & Altitude Monitoring (Grafana)
 
+* **Pipeline**: Streamed BMP280 pressure and altitude data via MQTT to a Node-RED and InfluxDB backend.
+
+* **Visualization**: Developed a Grafana Dashboard to track atmospheric trends and sensor health in real-time.
   
-Evidence: 
+**Evidence**: 
+![Task 4](images/image_2026-03-09_21-31-19.png)
 
-
-Evidence: 
 
 ---
 
@@ -88,5 +105,11 @@ Evidence:
 
 ---
 
+### Demo Video
+
+[Link to demo video](https://drive.google.com/file/d/1Hff3KdLtuQ_uu7cJDV-KtgqdPHpUUYyv/view?usp=sharing)
+
+---
 ## 5. Conclusion
 
+This lab successfully demonstrated the integration of a multi-sensor IoT ecosystem using the ESP32. By implementing Moving Average filtering and threshold-based classification at the edge, we reduced data noise and offloaded processing from the cloud. The seamless data pipeline—from MicroPython via MQTT to InfluxDB—allowed for high-fidelity visualization in Grafana, proving the effectiveness of real-time environmental and health monitoring in a unified dashboard.
