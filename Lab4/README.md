@@ -1,7 +1,7 @@
 
 ## IOT-Section 003-Group 2
 
-# LAB 3: IoT Smart Gate Control with Blynk, IR Sensor, Servo Motor, and TM1637
+# LAB 4: Multi-Sensor IoT Monitoring with Grafana Dashboard
 
 --- 
 
