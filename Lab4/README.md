@@ -32,18 +32,23 @@ will be stored in InfluxDB and visualized in Grafana.
 
 **ESP32 Pin Connections:**
 
-| Component         | Component Pin    | ESP32 Pin |
-| :---------------- | :--------------- | :-------- |
-| TM1637 Display    | CLK              | **D17**   |
-|                   | DIO              | **D16**   |
-|                   | VCC              | **5V**    |
-|                   | GND              | **GND**   |
-| Servo Motor       | Signal (Yellow)  | **D13**   |
-|                   | 5V (Red)         | **5V**    |
-|                   | GND (Brown)      | **GND**   |
-| IP Sensor         | OUT              | **D12**   |
-|                   | GND              | **GND**   |
-|                   | VCC              | **VCC**   |
+| Component  | Component Pin | ESP32 Pin |
+|------------|---------------|-----------|
+| BMP280     | SCL           | D22       |
+|            | SDA           | D21       |
+|            | VCC           | 3.3V      |
+|            | GND           | GND       |
+| DS3231     | SCL           | D22       |
+|            | SDA           | D21       |
+|            | VCC           | 5V        |
+|            | GND           | GND       |
+| MQ-5       | AO (Analog)   | D33       |
+|            | GND           | GND       |
+|            | VCC           | 5V        |
+| MLX90614   | SCL           | D22       |
+|            | SDA           | D21       |
+|            | VCC           | 3.3V      |
+|            | GND           | GND       |
 
 ![Wiring Diagram](<images/Screenshot 2026-03-10 at 10.19.09 at night.png>)
 
@@ -71,6 +76,7 @@ will be stored in InfluxDB and visualized in Grafana.
 * **Edge Processing**: Translates raw sensor data into actionable status strings before transmission.
  
 **Evidence**: 
+
 ![Task 2](images/photo_2026-03-10_21-26-09.jpg)
 
 ---
@@ -83,6 +89,7 @@ will be stored in InfluxDB and visualized in Grafana.
 * **Integration**: Combines MLX90614 object temperature with real-time timestamps from the DS3231 RTC.
 
 **Evidence**:
+
 ![Task 3](images/image_2026-03-09_21-30-14.png)
 
 ---
@@ -94,8 +101,7 @@ will be stored in InfluxDB and visualized in Grafana.
 * **Visualization**: Developed a Grafana Dashboard to track atmospheric trends and sensor health in real-time.
   
 **Evidence**: 
-![Task 4](images/image_2026-03-09_21-31-19.png)
-
+![Task 4](images/image_2026-03-10_22-55-29.png)
 
 ---
 
