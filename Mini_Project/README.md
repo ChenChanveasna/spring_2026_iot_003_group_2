@@ -126,6 +126,10 @@ Handles:
 - Temperature & humidity via DHT11
 - Real-time updates to all platforms
 
+### Smart Features
+- Automatic Event Logging
+- Generate a Downloadable CSV log 
+
 ### Logging System
 - All events stored in CSV
 - Includes:
