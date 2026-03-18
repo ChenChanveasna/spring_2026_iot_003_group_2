@@ -73,10 +73,7 @@ The system consists of 3 main layers:
 
 ### Data Flow
 
-Sensors → ESP32 → MQTT Broker → Backend Server → (Telegram / Web / Blynk)
-↑
-Control Commands
-
+![System Architecture](<images/IoT Device Layer.png>)
 
 ---
 
@@ -128,11 +125,6 @@ Handles:
 ### Environment Monitoring
 - Temperature & humidity via DHT11
 - Real-time updates to all platforms
-
-### Smart Lighting
-- LED controlled:
-  - Automatically
-  - Via Telegram/Web/Blynk
 
 ### Logging System
 - All events stored in CSV
