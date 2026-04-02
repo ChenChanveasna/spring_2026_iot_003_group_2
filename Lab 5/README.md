@@ -41,7 +41,7 @@ App Inventor for real-time monitoring and manual control.
 
 ## 4. Tasks & Evidence
 
-### Task 1: Gas Filtering (Moving Average)
+### Task 1: RGB Reading
 
 
 **Evidence**: 
@@ -50,7 +50,7 @@ App Inventor for real-time monitoring and manual control.
 
 ---
 
-### Task 2: Gas Risk Classification
+### Task 2: Color Classification
 
  
 **Evidence**: 
@@ -59,7 +59,7 @@ App Inventor for real-time monitoring and manual control.
 
 ---
 
-### Task 3: Fever Detection Logic
+### Task 3: NeoPixel Control
 
 
 
@@ -69,7 +69,7 @@ App Inventor for real-time monitoring and manual control.
 
 ---
 
-### Task 4: Pressure & Altitude Monitoring (Grafana)
+### Task 4: Motor Control (PWM)
 
 
   
@@ -78,6 +78,13 @@ App Inventor for real-time monitoring and manual control.
 
 ---
 
+### Task 5: MIT App Integration
+
+
+**Evidence**: 
+
+---
+ 
 ### Flowchart & Sequence Diagram
 ![Flowchart]()
 
