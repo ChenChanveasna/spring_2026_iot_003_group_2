@@ -34,7 +34,7 @@ App Inventor for real-time monitoring and manual control.
 
 
 
-![Wiring Diagram]()
+![Wiring Diagram](images/Hardware_Pins.png)
 
 
 ---
