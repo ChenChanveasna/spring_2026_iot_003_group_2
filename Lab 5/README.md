@@ -75,14 +75,14 @@ Display RGB values from TCS34725 sensor
 System correctly identifies Red, Green, and Blue  
 
 **Evidence:**  
-
+[Link to Video](https://drive.google.com/file/d/11NlFiE391vVvemMUtXTsbc3KDb-7Ffg1/view?usp=sharing)
 ---
 
 ### Task 3: NeoPixel Control  
 NeoPixel changes color based on detected color  
 
 **Evidence:**   
-
+[Link to Video](https://drive.google.com/file/d/103AEgVJQKOoPsGvUJQRk-qkrZT7f4hSl/view?usp=sharing)
 ---
 
 ### Task 4: Motor Control (PWM)  
@@ -93,7 +93,7 @@ Motor speed changes based on detected color
 - BLUE → PWM = 300  
 
 **Evidence:**  
-
+[Link to Video](https://drive.google.com/file/d/1lTSH2_OohvFQVbyLHheorYl57zOgr-Ex/view?usp=sharing)
 ---
 
 ### Task 5: MIT App Integration  
@@ -103,18 +103,11 @@ App features:
 - RGB input for manual LED control  
 
 **Evidence:**  
-
+[Link to Video](https://drive.google.com/file/d/1St8xNKb4f5ZJZmdtU5NFf-mWKfhDcuME/view?usp=sharing)
 ---
  
 ### Flowchart & Sequence Diagram
 ![Flowchart](<images/lab-5 diagram.png>)
-
-
----
-
-### Demo Video
-
-[Link to demo video]()
 
 ---
 ## 5. Conclusion
