@@ -51,7 +51,7 @@ The ESP32 processes color data locally (edge computing) and performs actions bas
 | DC Motor Driver | IN1          | D27      |
 |                 | IN2          | D26      |
 |                 | ENA (PWM)    | D14      |
-|                 | VCC          | 5V       |
+|                 | VCC          | None (Power Supply 12V)       |
 |                 | GND          | GND      |
 
 
