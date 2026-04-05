@@ -66,7 +66,7 @@ The ESP32 processes color data locally (edge computing) and performs actions bas
 ### Task 1: RGB Reading  
 Display RGB values from TCS34725 sensor  
 
-**Evidence:**  
+Evidence:
 ![Task 1](images/image_2026-04-03_16-03-59.png)
 
 ---
@@ -74,14 +74,14 @@ Display RGB values from TCS34725 sensor
 ### Task 2: Color Classification  
 System correctly identifies Red, Green, and Blue  
 
-**Evidence:**  
+Evidence: 
 [Link to Video](https://drive.google.com/file/d/11NlFiE391vVvemMUtXTsbc3KDb-7Ffg1/view?usp=sharing)
 ---
 
 ### Task 3: NeoPixel Control  
 NeoPixel changes color based on detected color  
 
-**Evidence:**   
+Evidence: 
 [Link to Video](https://drive.google.com/file/d/103AEgVJQKOoPsGvUJQRk-qkrZT7f4hSl/view?usp=sharing)
 ---
 
@@ -92,7 +92,7 @@ Motor speed changes based on detected color
 - GREEN → PWM = 500  
 - BLUE → PWM = 300  
 
-**Evidence:**  
+Evidence: 
 [Link to Video](https://drive.google.com/file/d/1lTSH2_OohvFQVbyLHheorYl57zOgr-Ex/view?usp=sharing)
 ---
 
@@ -102,7 +102,7 @@ App features:
 - Motor control buttons (Forward, Stop, Backward)  
 - RGB input for manual LED control  
 
-**Evidence:**  
+Evidence: 
 [Link to Video](https://drive.google.com/file/d/1St8xNKb4f5ZJZmdtU5NFf-mWKfhDcuME/view?usp=sharing)
 ---
  
