@@ -34,6 +34,16 @@ The ESP32 processes color data locally (edge computing) and performs actions bas
 
 ## 3. Hardware Configuration
 ### Hardware Component
+The following hardware components are used in this lab:
+
+1. **ESP32 Development Board**
+2. **TCS34725 Color Sensor Module**
+3. **NeoPixel RGB LED Ring (24 LEDs)**
+4. **L298N Motor Driver Module**
+5. **DC Motor**
+6. **External power supply for the motor driver / motor**
+7. **Jumper wires**
+8. **USB cable for ESP32 programming and power**
 
 ## Wiring Table
 
@@ -61,7 +71,90 @@ The ESP32 processes color data locally (edge computing) and performs actions bas
 
 ---
 
-## 4. Tasks & Evidence
+## 4. Setup Guide
+
+### 4.1 Software Needed
+- **Thonny IDE**
+- **MicroPython firmware installed on ESP32**
+- `main.py`
+- `tcs34725.py` driver file uploaded to the ESP32
+
+### 4.2 Hardware Setup
+1. Connect all hardware according to the wiring table above.
+2. Make sure the motor driver has its own proper external motor supply.
+3. Make sure all GND lines are connected together.
+
+### 4.3 ESP32 Setup in Thonny
+1. Flash MicroPython to the ESP32 if not already installed.
+2. Open **Thonny**.
+3. Connect the ESP32 using USB.
+4. Upload these files to the ESP32:
+   - `main.py`
+   - `tcs34725.py`
+5. Edit the Wi-Fi credentials inside `main.py`:
+
+```python
+ssid = "YOUR_WIFI_NAME"
+password = "YOUR_WIFI_PASSWORD"
+```
+
+6. Run `main.py`.
+7. Open the serial shell and wait for:
+   - Wi-Fi connected message
+   - ESP32 IP address
+   - `Server running on port 80...`
+
+### 4.4 MIT App Inventor Setup
+The MIT App should send HTTP GET requests to the ESP32 IP address.
+
+Example base URL:
+
+```text
+http://<ESP32_IP>
+```
+
+Example endpoints:
+
+```text
+/color
+/mode?value=auto
+/mode?value=manual
+/forward
+/backward
+/stop
+/speed?value=500
+/set_color?value=255,0,0
+```
+
+### 4.5 MIT App Block
+![Block 1](images/MIT_block_1.png)
+
+![Block 1](images/MIT_block_2.png)
+
+---
+
+## 5. System Behavior Summary
+The system can be understood as two modes:
+
+### Automatic Mode
+1. The app switches the ESP32 to `auto` mode.
+2. The ESP32 uses the latest classified color.
+3. It changes the NeoPixel ring color to match the detected color.
+4. It drives the motor forward at a color-based PWM speed.
+
+### Manual Mode
+1. The app sends manual control commands.
+2. The ESP32 ignores color-based automatic behavior.
+3. The user can:
+   - move motor forward,
+   - move motor backward,
+   - stop the motor,
+   - set RGB color manually,
+   - set speed manually.
+
+---
+
+## 6. Tasks & Evidence
 
 ### Task 1: RGB Reading  
 Display RGB values from TCS34725 sensor  

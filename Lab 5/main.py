@@ -102,13 +102,13 @@ while True:
         if mode == "auto":
             current_speed = 0
             if latest_color == "Red":
-                current_speed = 1000
+                current_speed = 700
                 set_neopixel_color(255, 0, 0)# Red for Red
             elif latest_color == "Green":
-                current_speed = 850
+                current_speed = 500
                 set_neopixel_color(0, 255, 0) # Green for Green
             elif latest_color == "Blue":
-                current_speed = 700
+                current_speed = 300
                 set_neopixel_color(0, 0, 255) # Blue for Blue
                 
             forward(current_speed)
@@ -186,8 +186,7 @@ while True:
                 response_msg = f"Manual speed set to {current_speed}"
             except Exception as e:
                 print("Error parsing speed:", e)
-            else:
-                response_msg = "Cannot change speed manually in Auto Mode"
+                response_msg = "Error setting speed"
         
         # HTTP Response Header
         client.send("HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\n")
