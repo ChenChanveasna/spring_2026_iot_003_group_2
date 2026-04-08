@@ -67,6 +67,7 @@ The ESP32 processes color data locally (edge computing) and performs actions bas
 Display RGB values from TCS34725 sensor  
 
 Evidence:
+
 ![Task 1](images/image_2026-04-03_16-03-59.png)
 
 ---
@@ -102,8 +103,11 @@ App features:
 - Motor control buttons (Forward, Stop, Backward)  
 - RGB input for manual LED control  
 
-Evidence: 
-[Link to Video](https://drive.google.com/file/d/1St8xNKb4f5ZJZmdtU5NFf-mWKfhDcuME/view?usp=sharing)
+Evidence:
+
+![Screenshot of MIT Interface](images/MIT_interface.jpg)
+
+Video: [Link to Video](https://drive.google.com/file/d/1St8xNKb4f5ZJZmdtU5NFf-mWKfhDcuME/view?usp=sharing)
 ---
  
 ### Flowchart & Sequence Diagram
