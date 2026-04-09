@@ -49,7 +49,7 @@ The project demonstrates integration of:
 
 **Evidence:**
 
-![Wiring Diagram](./Documentations/image_2026-02-07_222556912.png)
+![Wiring Diagram](./images/image_2026-02-07_222556912.png)
 
 ---
 
@@ -96,7 +96,7 @@ Sensor values are displayed on the web page and refreshed every **1–2 seconds*
 
 **Evidence:**
 
-![Sensor Values Web Page](Documentations/photo_2026-02-07_23-35-55.jpg)
+![Sensor Values Web Page](images/photo_2026-02-07_23-35-55.jpg)
 
 ---
 
@@ -111,7 +111,7 @@ The LCD updates instantly after each button press.
 
 **Evidence:**
 
-[Sensor to LCD Display](https://youtu.be/kPWdi5Bicsc )
+[Sensor to LCD Display Video Demo](https://drive.google.com/file/d/1mK_48M7qsHQ5rU62LAmyKMq_8slERrKW/view?usp=sharing )
 
 
 ---

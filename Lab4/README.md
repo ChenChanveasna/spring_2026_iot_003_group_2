@@ -26,7 +26,16 @@ will be stored in InfluxDB and visualized in Grafana.
 
 ## 3. Hardware Configuration
 ### Hardware Component
+The following hardware components are used in this lab:
 
+1. **ESP32 Development Board**
+2. **TCS34725 Color Sensor Module**
+3. **NeoPixel RGB LED Ring (24 LEDs)**
+4. **L298N Motor Driver Module**
+5. **DC Motor**
+6. **External power supply for the motor driver / motor**
+7. **Jumper wires**
+8. **USB cable for ESP32 programming and power**
 
 ### Wiring Table
 
