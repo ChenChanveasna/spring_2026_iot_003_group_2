@@ -58,17 +58,18 @@ The project demonstrates integration of:
 ### 4.1 Flashing & Running the Code
 
 1. Install **MicroPython** on the ESP32.
-2. Upload all project files to the ESP32.
-3. Edit Wi-Fi credentials in `main.py`:
+2. Upload all the prerequisite modules to the ESP32. You can find it in `/esp32_module`
+3. Open Thonny IDE and import the file `main.py`
+4. Edit Wi-Fi credentials in `main.py`:
 
 ```python
 ssid = "YOUR_WIFI_NAME"
 password = "YOUR_WIFI_PASSWORD"
 ```
 
-4. Reset the ESP32.
-5. Check the **Serial Monitor** for the assigned IP address.
-6. Open the IP address in a web browser.
+5. Reset the ESP32.
+6. Check the **Serial Monitor** for the assigned IP address.
+7. Open the IP address in a web browser.
 
 ---
 
