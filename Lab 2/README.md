@@ -129,7 +129,7 @@ If the text exceeds **16 characters**, it scrolls automatically.
 ---
 
 ### Flowchart
-![Flowchart](./Documentations/photo_2026-02-07_22-03-34.jpg)
+![Flowchart](./images/photo_2026-02-07_22-03-34.jpg)
 
 ---
 
