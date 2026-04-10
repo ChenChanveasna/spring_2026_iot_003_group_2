@@ -79,7 +79,7 @@ Before running the project, prepare the following:
   - `ds3231.py`
   - `mlx90614.py`
 
-### 4.2 Upload prerequisite modules to `/esp32_module`
+### 4.2 Upload prerequisite modules
 This project depends on external MicroPython sensor drivers. Upload them to the ESP32 first.
 
 1. Connect the ESP32 to your computer.
