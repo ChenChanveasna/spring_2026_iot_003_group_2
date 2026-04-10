@@ -14,9 +14,9 @@ BLYNK_TOKEN = "tEOUu5UtCpPNM7ZgJl1Sxv750Jqu6xmc"
 BLYNK_API   = "http://blynk.cloud/external/api"
 
 IR_PIN = 12
-SERVO_PIN = 16
-TM1637_CLK_PIN = 19
-TM1637_DIO_PIN = 21
+SERVO_PIN = 13
+TM1637_CLK_PIN = 17
+TM1637_DIO_PIN = 16
 
 SERVO_PERIOD = 20      # ms
 LOOP_DELAY   = 0.1     # seconds
