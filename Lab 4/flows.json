@@ -1,0 +1,157 @@
+[
+    {
+        "id": "6a54e41b7eade955",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5f7663bab3d6e50e",
+        "type": "mqtt in",
+        "z": "6a54e41b7eade955",
+        "name": "",
+        "topic": "/esp32/lab4",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "9537031a921ced50",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 230,
+        "y": 80,
+        "wires": [
+            [
+                "028863a70d4dd84c",
+                "4147111857fd0c9b"
+            ]
+        ]
+    },
+    {
+        "id": "028863a70d4dd84c",
+        "type": "debug",
+        "z": "6a54e41b7eade955",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "4147111857fd0c9b",
+        "type": "function",
+        "z": "6a54e41b7eade955",
+        "name": "function 1",
+        "func": "let data = msg.payload;\n\nmsg.measurement = \"environment\";\n\nmsg.payload = {\n    gas_average: Number(data.average),\n    pressure: Number(data.pressure),\n    altitude: Number(data.altitude),\n    fever_flag: Number(data.fever_flag),\n    temperature: Number(data.temperature),\n    risk_level: data.risk_level,\n    timestamp: data.timestamp\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 220,
+        "wires": [
+            [
+                "bf99d03f17a978e8",
+                "b0a3342b047ca9da"
+            ]
+        ]
+    },
+    {
+        "id": "b0a3342b047ca9da",
+        "type": "debug",
+        "z": "6a54e41b7eade955",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "bf99d03f17a978e8",
+        "type": "influxdb out",
+        "z": "6a54e41b7eade955",
+        "influxdb": "b573d3faa60fdb0b",
+        "name": "",
+        "measurement": "environment",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 690,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "9537031a921ced50",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "b573d3faa60fdb0b",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": 8086,
+        "protocol": "http",
+        "database": "aupp_lab",
+        "name": "127.0.0.1:8086/aupp_lab",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "http://localhost:8086",
+        "timeout": 10,
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "873990c8c692dd54",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-influxdb": "0.7.0"
+        }
+    }
+]

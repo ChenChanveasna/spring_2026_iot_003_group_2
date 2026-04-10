@@ -8,8 +8,8 @@ import bmp280
 import ds3231
 
 # ---------- WIFI ----------
-SSID = "Thean Ching"
-PASSWORD = "0977303147"
+SSID = "Robotic WIFI"
+PASSWORD = "rbtWIFI@2025"
 
 # ---------- MQTT ----------
 MQTT_BROKER = "broker.hivemq.com"
