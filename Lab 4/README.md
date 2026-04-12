@@ -264,7 +264,7 @@ This is especially useful for showing:
 ### Screenshot of Node-Red Flow
 ![NodeRed](./images/node_red_flow.png)
 ### Flowchart & Sequence Diagram
-![Flowchart](./images/Lab 4 (1).jpg)
+![Flowchart](./images/Lab4_flowchart.jpg)
 
 
 ---
