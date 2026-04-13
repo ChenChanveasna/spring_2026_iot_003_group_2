@@ -23,16 +23,20 @@ The system automates parking operations by:
 
 ## Hardware Components
 
-| Component | Description |
-|----------|------------|
-| ESP32 | Main microcontroller (MicroPython) |
-| Ultrasonic Sensors | Detect vehicles at entry & exit |
-| IR Sensors (x4) | Detect parking slot occupancy |
-| Servo Motors (x2) | Control entry & exit gates |
-| DHT11 | Temperature & humidity sensor |
-| Relay / LED | Parking light control |
-| TM1637 Display | Display available slots |
-| LCD I2C | Display system status |
+| Component              | GPIO Pin(s)         | Description                                      |
+|------------------------|---------------------|--------------------------------------------------|
+| Ultrasonic (Entry)     | TRIG: 33, ECHO: 32 | Detect vehicle at entry                           |
+| Ultrasonic (Exit)      | TRIG: 5, ECHO: 18  | Detect vehicle at exit                            |
+| Servo Motor (Entry)    | 16                 | Controls entry gate                               |
+| Servo Motor (Exit)     | 12                 | Controls exit gate                                |
+| IR Sensor - Slot 1     | 14                 | Detect occupancy of parking slot 1                |
+| IR Sensor - Slot 2     | 27                 | Detect occupancy of parking slot 2                |
+| IR Sensor - Slot 3     | 26                 | Detect occupancy of parking slot 3                |
+| IR Sensor - Slot 4     | 25                 | Detect occupancy of parking slot 4                |
+| LED                    | 2                  | Parking light indicator                           |
+| DHT11                  | 4                  | Temperature & humidity sensor                     |
+| TM1637 Display         | CLK: 19, DIO: 23   | Displays available parking slots                  |
+| LCD I2C                | SCL: 22, SDA: 21   | Displays system messages/status                   |
 
 ---
 
