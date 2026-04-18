@@ -263,15 +263,16 @@ This is especially useful for showing:
 
 ### Screenshot of Node-Red Flow
 ![NodeRed](./images/node_red_flow.png)
-### Flowchart & Sequence Diagram
-![Flowchart](./images/Lab4_flowchart.jpg)
+
+### Flowchart
+![Flowchart](./images/Lab_4_Flowchart.png)
 
 
 ---
 
-### Demo Video
+## Demo Video
 
-[Link to demo video](https://drive.google.com/file/d/1Hff3KdLtuQ_uu7cJDV-KtgqdPHpUUYyv/view?usp=sharing)
+### [Link to demo video](https://drive.google.com/file/d/1Hff3KdLtuQ_uu7cJDV-KtgqdPHpUUYyv/view?usp=sharing)
 
 ---
 ## 7. Conclusion
