@@ -5,7 +5,7 @@ import ujson
 import dht
 
 from umqtt.simple import MQTTClient
-from hardware import IR, UltraSonic, Servo, TMDriver, LCD
+from Mini_Project.modules.hardware import IR, UltraSonic, Servo, TMDriver, LCD
 
 # =========================
 # USER CONFIG

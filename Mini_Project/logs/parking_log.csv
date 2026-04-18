@@ -1,0 +1,472 @@
+timestamp,event_type,slot,gate,duration_seconds,fee,message
+2026-03-17 15:34:29,led_changed,,,,,LED turned off
+2026-03-17 15:34:29,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 15:34:30,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 15:34:36,heartbeat,,,,,Heartbeat
+2026-03-17 15:34:47,heartbeat,,,,,Heartbeat
+2026-03-17 15:34:57,heartbeat,,,,,Heartbeat
+2026-03-17 15:35:07,heartbeat,,,,,Heartbeat
+2026-03-17 15:35:35,led_changed,,,,,LED turned off
+2026-03-17 15:35:35,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 15:35:35,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 15:35:37,heartbeat,,,,,Heartbeat
+2026-03-17 15:35:48,heartbeat,,,,,Heartbeat
+2026-03-17 15:35:58,heartbeat,,,,,Heartbeat
+2026-03-17 15:36:08,heartbeat,,,,,Heartbeat
+2026-03-17 15:36:18,heartbeat,,,,,Heartbeat
+2026-03-17 15:36:29,heartbeat,,,,,Heartbeat
+2026-03-17 15:36:39,heartbeat,,,,,Heartbeat
+2026-03-17 15:36:59,heartbeat,,,,,Heartbeat
+2026-03-17 15:37:09,heartbeat,,,,,Heartbeat
+2026-03-17 15:37:20,heartbeat,,,,,Heartbeat
+2026-03-17 15:37:30,heartbeat,,,,,Heartbeat
+2026-03-17 15:37:39,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 15:37:40,heartbeat,,,,,Heartbeat
+2026-03-17 15:37:44,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 15:37:50,heartbeat,,,,,Heartbeat
+2026-03-17 15:37:54,exit_gate_opened,,exit,,,Exit gate open
+2026-03-17 15:38:00,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 15:38:01,heartbeat,,,,,Heartbeat
+2026-03-17 15:38:07,led_changed,,,,,LED turned on
+2026-03-17 15:38:10,led_changed,,,,,LED turned on
+2026-03-17 15:38:11,led_changed,,,,,LED turned off
+2026-03-17 15:38:11,heartbeat,,,,,Heartbeat
+2026-03-17 15:38:22,heartbeat,,,,,Heartbeat
+2026-03-17 15:38:32,heartbeat,,,,,Heartbeat
+2026-03-17 15:38:42,heartbeat,,,,,Heartbeat
+2026-03-17 15:38:52,heartbeat,,,,,Heartbeat
+2026-03-17 15:39:02,heartbeat,,,,,Heartbeat
+2026-03-17 15:39:14,led_changed,,,,,LED turned off
+2026-03-17 15:39:14,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 15:39:15,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 15:39:22,heartbeat,,,,,Heartbeat
+2026-03-17 15:39:33,heartbeat,,,,,Heartbeat
+2026-03-17 15:39:43,heartbeat,,,,,Heartbeat
+2026-03-17 15:39:53,heartbeat,,,,,Heartbeat
+2026-03-17 15:40:03,heartbeat,,,,,Heartbeat
+2026-03-17 15:40:13,heartbeat,,,,,Heartbeat
+2026-03-17 15:40:17,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 15:40:20,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 15:40:21,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 15:40:24,heartbeat,,,,,Heartbeat
+2026-03-17 15:40:27,exit_gate_opened,,exit,,,Exit gate open
+2026-03-17 15:40:30,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 15:40:31,exit_gate_opened,,exit,,,Exit gate open
+2026-03-17 15:40:34,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 15:40:34,heartbeat,,,,,Heartbeat
+2026-03-17 15:40:44,heartbeat,,,,,Heartbeat
+2026-03-17 15:40:54,heartbeat,,,,,Heartbeat
+2026-03-17 15:41:05,heartbeat,,,,,Heartbeat
+2026-03-17 15:41:15,heartbeat,,,,,Heartbeat
+2026-03-17 15:41:25,led_changed,,,,,LED turned off
+2026-03-17 15:41:25,heartbeat,,,,,Heartbeat
+2026-03-17 15:41:26,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 15:41:26,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 15:41:35,heartbeat,,,,,Heartbeat
+2026-03-17 15:41:46,heartbeat,,,,,Heartbeat
+2026-03-17 15:41:56,heartbeat,,,,,Heartbeat
+2026-03-17 15:42:06,heartbeat,,,,,Heartbeat
+2026-03-17 15:42:16,heartbeat,,,,,Heartbeat
+2026-03-17 15:42:27,heartbeat,,,,,Heartbeat
+2026-03-17 15:42:48,heartbeat,,,,,Heartbeat
+2026-03-17 15:42:58,heartbeat,,,,,Heartbeat
+2026-03-17 15:43:08,heartbeat,,,,,Heartbeat
+2026-03-17 15:43:19,heartbeat,,,,,Heartbeat
+2026-03-17 15:43:29,heartbeat,,,,,Heartbeat
+2026-03-17 15:43:39,heartbeat,,,,,Heartbeat
+2026-03-17 15:43:46,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 15:43:50,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 15:43:50,heartbeat,,,,,Heartbeat
+2026-03-17 15:43:57,exit_gate_opened,,exit,,,Exit gate open
+2026-03-17 15:44:00,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 15:44:00,heartbeat,,,,,Heartbeat
+2026-03-17 15:44:07,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 15:44:10,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 15:44:10,heartbeat,,,,,Heartbeat
+2026-03-17 15:44:21,heartbeat,,,,,Heartbeat
+2026-03-17 15:44:23,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 15:44:27,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 15:44:28,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 15:44:31,heartbeat,,,,,Heartbeat
+2026-03-17 15:44:41,heartbeat,,,,,Heartbeat
+2026-03-17 15:44:51,heartbeat,,,,,Heartbeat
+2026-03-17 15:45:11,heartbeat,,,,,Heartbeat
+2026-03-17 15:45:22,heartbeat,,,,,Heartbeat
+2026-03-17 15:45:32,heartbeat,,,,,Heartbeat
+2026-03-17 15:45:35,parking_started,slot3,,,,slot3 occupied
+2026-03-17 15:45:39,parking_finished,slot4,,,,slot4 freed
+2026-03-17 15:45:52,heartbeat,,,,,Heartbeat
+2026-03-17 15:46:02,heartbeat,,,,,Heartbeat
+2026-03-17 15:46:05,parking_started,slot1,,,,slot1 occupied
+2026-03-17 15:46:12,heartbeat,,,,,Heartbeat
+2026-03-17 15:46:20,parking_finished,slot1,,14,1000,slot1 freed | Duration: 14s | Fee: 1000 Riel
+2026-03-17 15:46:23,heartbeat,,,,,Heartbeat
+2026-03-17 15:46:33,heartbeat,,,,,Heartbeat
+2026-03-17 15:46:43,heartbeat,,,,,Heartbeat
+2026-03-17 15:46:53,heartbeat,,,,,Heartbeat
+2026-03-17 17:37:35,heartbeat,,,,,Heartbeat
+2026-03-17 17:37:42,parking_finished,slot2,,,,slot2 freed
+2026-03-17 17:37:43,parking_finished,slot1,,,,slot1 freed
+2026-03-17 17:37:44,parking_started,slot2,,,,slot2 occupied
+2026-03-17 17:37:45,heartbeat,,,,,Heartbeat
+2026-03-17 17:37:46,parking_started,slot1,,,,slot1 occupied
+2026-03-17 17:37:55,heartbeat,,,,,Heartbeat
+2026-03-17 17:37:56,parking_finished,slot1,,9,0,slot1 freed | Duration: 9s | Fee: 0 Riel
+2026-03-17 17:37:56,parking_finished,slot2,,11,1000,slot2 freed | Duration: 11s | Fee: 1000 Riel
+2026-03-17 17:37:58,parking_finished,slot3,,,,slot3 freed
+2026-03-17 17:38:05,heartbeat,,,,,Heartbeat
+2026-03-17 17:38:10,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 17:38:12,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 17:38:13,exit_gate_opened,,exit,,,Exit gate open
+2026-03-17 17:38:14,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 17:38:15,heartbeat,,,,,Heartbeat
+2026-03-17 17:38:19,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 17:38:21,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 17:38:26,heartbeat,,,,,Heartbeat
+2026-03-17 17:38:36,heartbeat,,,,,Heartbeat
+2026-03-17 17:38:46,heartbeat,,,,,Heartbeat
+2026-03-17 17:38:56,heartbeat,,,,,Heartbeat
+2026-03-17 17:39:06,heartbeat,,,,,Heartbeat
+2026-03-17 17:39:08,vehicle_at_entry,,,,,Vehicle detected at entry (6.21 cm)
+2026-03-17 17:39:08,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 17:39:09,entry_clear,,,,,Entry area clear
+2026-03-17 17:39:12,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 17:39:16,heartbeat,,,,,Heartbeat
+2026-03-17 17:39:27,heartbeat,,,,,Heartbeat
+2026-03-17 17:39:37,heartbeat,,,,,Heartbeat
+2026-03-17 17:39:47,heartbeat,,,,,Heartbeat
+2026-03-17 17:39:57,heartbeat,,,,,Heartbeat
+2026-03-17 17:40:07,heartbeat,,,,,Heartbeat
+2026-03-17 17:40:17,heartbeat,,,,,Heartbeat
+2026-03-17 17:40:28,heartbeat,,,,,Heartbeat
+2026-03-17 17:40:38,heartbeat,,,,,Heartbeat
+2026-03-17 17:40:48,heartbeat,,,,,Heartbeat
+2026-03-17 17:40:58,heartbeat,,,,,Heartbeat
+2026-03-17 17:41:08,heartbeat,,,,,Heartbeat
+2026-03-17 17:41:19,heartbeat,,,,,Heartbeat
+2026-03-17 17:41:29,heartbeat,,,,,Heartbeat
+2026-03-17 17:41:39,heartbeat,,,,,Heartbeat
+2026-03-17 17:41:49,heartbeat,,,,,Heartbeat
+2026-03-17 17:41:59,heartbeat,,,,,Heartbeat
+2026-03-17 17:42:09,heartbeat,,,,,Heartbeat
+2026-03-17 17:42:20,heartbeat,,,,,Heartbeat
+2026-03-17 17:42:30,heartbeat,,,,,Heartbeat
+2026-03-17 17:42:40,heartbeat,,,,,Heartbeat
+2026-03-17 17:42:50,heartbeat,,,,,Heartbeat
+2026-03-17 17:43:00,heartbeat,,,,,Heartbeat
+2026-03-17 17:43:10,heartbeat,,,,,Heartbeat
+2026-03-17 17:43:13,vehicle_at_entry,,,,,Vehicle detected at entry (3.29 cm)
+2026-03-17 17:43:13,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 17:43:14,entry_clear,,,,,Entry area clear
+2026-03-17 17:43:15,vehicle_at_entry,,,,,Vehicle detected at entry (5.23 cm)
+2026-03-17 17:43:15,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 17:43:15,entry_clear,,,,,Entry area clear
+2026-03-17 17:43:17,parking_started,slot1,,,,slot1 occupied
+2026-03-17 17:43:18,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 17:43:21,heartbeat,,,,,Heartbeat
+2026-03-17 17:43:31,heartbeat,,,,,Heartbeat
+2026-03-17 17:43:41,heartbeat,,,,,Heartbeat
+2026-03-17 17:43:51,heartbeat,,,,,Heartbeat
+2026-03-17 17:43:59,parking_finished,slot1,,42,4000,slot1 freed | Duration: 42s | Fee: 4000 Riel
+2026-03-17 17:44:01,heartbeat,,,,,Heartbeat
+2026-03-17 17:44:12,heartbeat,,,,,Heartbeat
+2026-03-17 17:44:20,vehicle_at_entry,,,,,Vehicle detected at entry (3.94 cm)
+2026-03-17 17:44:20,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 17:44:21,entry_clear,,,,,Entry area clear
+2026-03-17 17:44:22,heartbeat,,,,,Heartbeat
+2026-03-17 17:44:23,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 17:44:24,parking_started,slot1,,,,slot1 occupied
+2026-03-17 17:44:32,heartbeat,,,,,Heartbeat
+2026-03-17 17:44:42,heartbeat,,,,,Heartbeat
+2026-03-17 17:44:52,heartbeat,,,,,Heartbeat
+2026-03-17 17:44:59,vehicle_at_entry,,,,,Vehicle detected at entry (3.64 cm)
+2026-03-17 17:44:59,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 17:45:00,entry_clear,,,,,Entry area clear
+2026-03-17 17:45:03,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 17:45:03,heartbeat,,,,,Heartbeat
+2026-03-17 17:45:13,heartbeat,,,,,Heartbeat
+2026-03-17 17:45:23,heartbeat,,,,,Heartbeat
+2026-03-17 17:45:29,vehicle_at_entry,,,,,Vehicle detected at entry (4.29 cm)
+2026-03-17 17:45:29,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 17:45:30,entry_clear,,,,,Entry area clear
+2026-03-17 17:45:33,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 17:45:33,heartbeat,,,,,Heartbeat
+2026-03-17 17:45:33,parking_started,slot2,,,,slot2 occupied
+2026-03-17 17:45:38,vehicle_at_entry,,,,,Vehicle detected at entry (2.68 cm)
+2026-03-17 17:45:38,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 17:45:39,entry_clear,,,,,Entry area clear
+2026-03-17 17:45:41,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 17:45:43,parking_started,slot3,,,,slot3 occupied
+2026-03-17 17:45:43,heartbeat,,,,,Heartbeat
+2026-03-17 17:45:48,vehicle_at_entry,,,,,Vehicle detected at entry (2.97 cm)
+2026-03-17 17:45:48,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 17:45:50,entry_clear,,,,,Entry area clear
+2026-03-17 17:45:51,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 17:45:53,heartbeat,,,,,Heartbeat
+2026-03-17 17:45:54,parking_started,slot4,,,,slot4 occupied
+2026-03-17 17:46:04,heartbeat,,,,,Heartbeat
+2026-03-17 17:46:14,heartbeat,,,,,Heartbeat
+2026-03-17 17:46:24,heartbeat,,,,,Heartbeat
+2026-03-17 17:46:34,heartbeat,,,,,Heartbeat
+2026-03-17 17:46:44,heartbeat,,,,,Heartbeat
+2026-03-17 17:46:55,heartbeat,,,,,Heartbeat
+2026-03-17 17:47:05,heartbeat,,,,,Heartbeat
+2026-03-17 17:47:15,heartbeat,,,,,Heartbeat
+2026-03-17 17:47:25,heartbeat,,,,,Heartbeat
+2026-03-17 17:47:35,heartbeat,,,,,Heartbeat
+2026-03-17 17:47:45,heartbeat,,,,,Heartbeat
+2026-03-17 17:47:56,heartbeat,,,,,Heartbeat
+2026-03-17 17:48:06,heartbeat,,,,,Heartbeat
+2026-03-17 17:48:16,heartbeat,,,,,Heartbeat
+2026-03-17 17:48:26,heartbeat,,,,,Heartbeat
+2026-03-17 17:48:36,heartbeat,,,,,Heartbeat
+2026-03-17 17:48:46,heartbeat,,,,,Heartbeat
+2026-03-17 17:48:57,heartbeat,,,,,Heartbeat
+2026-03-17 17:49:07,heartbeat,,,,,Heartbeat
+2026-03-17 17:49:17,heartbeat,,,,,Heartbeat
+2026-03-17 17:49:27,heartbeat,,,,,Heartbeat
+2026-03-17 17:49:37,heartbeat,,,,,Heartbeat
+2026-03-17 17:49:40,parking_finished,slot1,,315,31000,slot1 freed | Duration: 315s | Fee: 31000 Riel
+2026-03-17 17:49:40,parking_finished,slot4,,225,22000,slot4 freed | Duration: 225s | Fee: 22000 Riel
+2026-03-17 17:49:41,vehicle_at_exit,,,,,Vehicle detected at exit (3.4 cm)
+2026-03-17 17:49:41,exit_gate_opened,,exit,,,Exit gate open
+2026-03-17 17:49:42,exit_clear,,,,,Exit area clear
+2026-03-17 17:49:45,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 17:49:48,parking_finished,slot3,,244,24000,slot3 freed | Duration: 244s | Fee: 24000 Riel
+2026-03-17 17:49:48,heartbeat,,,,,Heartbeat
+2026-03-17 17:49:50,vehicle_at_exit,,,,,Vehicle detected at exit (6.31 cm)
+2026-03-17 17:49:50,exit_gate_opened,,exit,,,Exit gate open
+2026-03-17 17:49:50,exit_clear,,,,,Exit area clear
+2026-03-17 17:49:53,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 17:49:55,parking_finished,slot2,,261,26000,slot2 freed | Duration: 261s | Fee: 26000 Riel
+2026-03-17 17:49:58,heartbeat,,,,,Heartbeat
+2026-03-17 17:49:58,vehicle_at_exit,,,,,Vehicle detected at exit (7.94 cm)
+2026-03-17 17:49:59,exit_gate_opened,,exit,,,Exit gate open
+2026-03-17 17:49:59,exit_clear,,,,,Exit area clear
+2026-03-17 17:50:02,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 17:50:08,heartbeat,,,,,Heartbeat
+2026-03-17 17:50:14,vehicle_at_exit,,,,,Vehicle detected at exit (5.01 cm)
+2026-03-17 17:50:14,exit_gate_opened,,exit,,,Exit gate open
+2026-03-17 17:50:15,exit_clear,,,,,Exit area clear
+2026-03-17 17:50:18,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 17:50:18,heartbeat,,,,,Heartbeat
+2026-03-17 17:50:29,heartbeat,,,,,Heartbeat
+2026-03-17 17:50:39,heartbeat,,,,,Heartbeat
+2026-03-17 17:50:49,heartbeat,,,,,Heartbeat
+2026-03-17 17:50:59,heartbeat,,,,,Heartbeat
+2026-03-17 17:51:09,heartbeat,,,,,Heartbeat
+2026-03-17 17:51:19,heartbeat,,,,,Heartbeat
+2026-03-17 17:51:30,heartbeat,,,,,Heartbeat
+2026-03-17 17:51:40,heartbeat,,,,,Heartbeat
+2026-03-17 17:51:50,heartbeat,,,,,Heartbeat
+2026-03-17 17:51:56,vehicle_at_entry,,,,,Vehicle detected at entry (3.62 cm)
+2026-03-17 17:51:56,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 17:51:58,entry_clear,,,,,Entry area clear
+2026-03-17 17:52:00,parking_started,slot1,,,,slot1 occupied
+2026-03-17 17:52:00,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 17:52:00,heartbeat,,,,,Heartbeat
+2026-03-17 17:52:04,vehicle_at_entry,,,,,Vehicle detected at entry (2.98 cm)
+2026-03-17 17:52:04,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 17:52:05,entry_clear,,,,,Entry area clear
+2026-03-17 17:52:07,parking_started,slot2,,,,slot2 occupied
+2026-03-17 17:52:08,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 17:52:11,heartbeat,,,,,Heartbeat
+2026-03-17 17:52:11,vehicle_at_entry,,,,,Vehicle detected at entry (3.62 cm)
+2026-03-17 17:52:11,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 17:52:12,entry_clear,,,,,Entry area clear
+2026-03-17 17:52:15,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 17:52:16,parking_started,slot3,,,,slot3 occupied
+2026-03-17 17:52:19,vehicle_at_entry,,,,,Vehicle detected at entry (4.27 cm)
+2026-03-17 17:52:20,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 17:52:21,entry_clear,,,,,Entry area clear
+2026-03-17 17:52:21,heartbeat,,,,,Heartbeat
+2026-03-17 17:52:23,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 17:52:25,parking_started,slot4,,,,slot4 occupied
+2026-03-17 17:52:31,vehicle_at_entry,,,,,Vehicle detected at entry (2.66 cm)
+2026-03-17 17:52:31,parking_full,,,,,Parking full. Vehicle waiting at entry (2.66 cm). Available slots: 0
+2026-03-17 17:52:31,heartbeat,,,,,Heartbeat
+2026-03-17 17:52:36,entry_clear,,,,,Entry area clear
+2026-03-17 17:52:37,vehicle_at_entry,,,,,Vehicle detected at entry (2.68 cm)
+2026-03-17 17:52:37,parking_full,,,,,Parking full. Vehicle waiting at entry (2.68 cm). Available slots: 0
+2026-03-17 17:52:41,heartbeat,,,,,Heartbeat
+2026-03-17 17:52:43,entry_clear,,,,,Entry area clear
+2026-03-17 17:52:51,heartbeat,,,,,Heartbeat
+2026-03-17 17:53:02,heartbeat,,,,,Heartbeat
+2026-03-17 17:53:10,parking_finished,slot1,,70,7000,slot1 freed | Duration: 70s | Fee: 7000 Riel
+2026-03-17 17:53:11,parking_finished,slot4,,46,4000,slot4 freed | Duration: 46s | Fee: 4000 Riel
+2026-03-17 17:53:12,heartbeat,,,,,Heartbeat
+2026-03-17 17:53:13,parking_finished,slot3,,57,5000,slot3 freed | Duration: 57s | Fee: 5000 Riel
+2026-03-17 17:53:14,parking_started,slot1,,,,slot1 occupied
+2026-03-17 17:53:17,parking_started,slot4,,,,slot4 occupied
+2026-03-17 17:53:20,parking_started,slot3,,,,slot3 occupied
+2026-03-17 17:53:22,heartbeat,,,,,Heartbeat
+2026-03-17 17:53:32,heartbeat,,,,,Heartbeat
+2026-03-17 17:53:42,heartbeat,,,,,Heartbeat
+2026-03-17 17:53:52,heartbeat,,,,,Heartbeat
+2026-03-17 17:54:03,heartbeat,,,,,Heartbeat
+2026-03-17 17:54:13,heartbeat,,,,,Heartbeat
+2026-03-17 17:54:23,heartbeat,,,,,Heartbeat
+2026-03-17 17:54:33,heartbeat,,,,,Heartbeat
+2026-03-17 17:54:38,vehicle_at_entry,,,,,Vehicle detected at entry (2.66 cm)
+2026-03-17 17:54:38,parking_full,,,,,Parking full. Vehicle waiting at entry (2.66 cm). Available slots: 0
+2026-03-17 17:54:43,heartbeat,,,,,Heartbeat
+2026-03-17 17:54:45,entry_clear,,,,,Entry area clear
+2026-03-17 17:54:53,heartbeat,,,,,Heartbeat
+2026-03-17 17:55:04,heartbeat,,,,,Heartbeat
+2026-03-17 17:55:14,heartbeat,,,,,Heartbeat
+2026-03-17 17:55:24,heartbeat,,,,,Heartbeat
+2026-03-17 17:55:34,heartbeat,,,,,Heartbeat
+2026-03-17 17:55:44,heartbeat,,,,,Heartbeat
+2026-03-17 17:55:54,heartbeat,,,,,Heartbeat
+2026-03-17 17:56:05,heartbeat,,,,,Heartbeat
+2026-03-17 17:56:15,heartbeat,,,,,Heartbeat
+2026-03-17 17:56:25,heartbeat,,,,,Heartbeat
+2026-03-17 17:56:35,heartbeat,,,,,Heartbeat
+2026-03-17 17:56:43,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 17:56:45,heartbeat,,,,,Heartbeat
+2026-03-17 17:56:46,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 17:56:49,exit_gate_opened,,exit,,,Exit gate open
+2026-03-17 17:56:52,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 17:56:55,led_changed,,,,,LED turned on
+2026-03-17 17:56:55,heartbeat,,,,,Heartbeat
+2026-03-17 17:57:00,led_changed,,,,,LED turned on
+2026-03-17 17:57:01,led_changed,,,,,LED turned off
+2026-03-17 17:57:06,heartbeat,,,,,Heartbeat
+2026-03-17 17:57:16,heartbeat,,,,,Heartbeat
+2026-03-17 17:57:26,heartbeat,,,,,Heartbeat
+2026-03-17 17:57:36,heartbeat,,,,,Heartbeat
+2026-03-17 17:57:46,heartbeat,,,,,Heartbeat
+2026-03-17 17:57:57,heartbeat,,,,,Heartbeat
+2026-03-17 17:58:07,heartbeat,,,,,Heartbeat
+2026-03-17 17:58:17,heartbeat,,,,,Heartbeat
+2026-03-17 17:58:27,heartbeat,,,,,Heartbeat
+2026-03-17 17:58:37,heartbeat,,,,,Heartbeat
+2026-03-17 17:58:47,heartbeat,,,,,Heartbeat
+2026-03-17 17:58:58,heartbeat,,,,,Heartbeat
+2026-03-17 17:59:00,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 17:59:04,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 17:59:05,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 17:59:08,heartbeat,,,,,Heartbeat
+2026-03-17 17:59:10,exit_gate_opened,,exit,,,Exit gate open
+2026-03-17 17:59:14,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 17:59:15,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 17:59:18,heartbeat,,,,,Heartbeat
+2026-03-17 17:59:28,heartbeat,,,,,Heartbeat
+2026-03-17 17:59:38,heartbeat,,,,,Heartbeat
+2026-03-17 17:59:49,heartbeat,,,,,Heartbeat
+2026-03-17 17:59:59,heartbeat,,,,,Heartbeat
+2026-03-17 18:00:09,heartbeat,,,,,Heartbeat
+2026-03-17 18:00:19,heartbeat,,,,,Heartbeat
+2026-03-17 18:00:28,parking_finished,slot1,,434,43000,slot1 freed | Duration: 434s | Fee: 43000 Riel
+2026-03-17 18:00:29,heartbeat,,,,,Heartbeat
+2026-03-17 18:00:34,vehicle_at_exit,,,,,Vehicle detected at exit (3.7 cm)
+2026-03-17 18:00:35,exit_gate_opened,,exit,,,Exit gate open
+2026-03-17 18:00:36,exit_clear,,,,,Exit area clear
+2026-03-17 18:00:38,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 18:00:39,parking_finished,slot2,,513,51000,slot2 freed | Duration: 513s | Fee: 51000 Riel
+2026-03-17 18:00:40,heartbeat,,,,,Heartbeat
+2026-03-17 18:00:45,parking_started,slot2,,,,slot2 occupied
+2026-03-17 18:00:50,heartbeat,,,,,Heartbeat
+2026-03-17 18:01:00,heartbeat,,,,,Heartbeat
+2026-03-17 18:01:10,heartbeat,,,,,Heartbeat
+2026-03-17 18:01:20,heartbeat,,,,,Heartbeat
+2026-03-17 18:01:30,heartbeat,,,,,Heartbeat
+2026-03-17 18:01:41,vehicle_at_exit,,,,,Vehicle detected at exit (3.72 cm)
+2026-03-17 18:01:41,exit_gate_opened,,exit,,,Exit gate open
+2026-03-17 18:01:41,heartbeat,,,,,Heartbeat
+2026-03-17 18:01:41,exit_clear,,,,,Exit area clear
+2026-03-17 18:01:44,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 18:01:46,parking_finished,slot2,,61,6000,slot2 freed | Duration: 61s | Fee: 6000 Riel
+2026-03-17 18:01:51,heartbeat,,,,,Heartbeat
+2026-03-17 18:02:01,heartbeat,,,,,Heartbeat
+2026-03-17 18:02:06,vehicle_at_exit,,,,,Vehicle detected at exit (5.68 cm)
+2026-03-17 18:02:07,exit_gate_opened,,exit,,,Exit gate open
+2026-03-17 18:02:07,exit_clear,,,,,Exit area clear
+2026-03-17 18:02:10,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 18:02:11,parking_finished,slot3,,531,53000,slot3 freed | Duration: 531s | Fee: 53000 Riel
+2026-03-17 18:02:12,heartbeat,,,,,Heartbeat
+2026-03-17 18:02:16,vehicle_at_exit,,,,,Vehicle detected at exit (5.33 cm)
+2026-03-17 18:02:16,exit_gate_opened,,exit,,,Exit gate open
+2026-03-17 18:02:16,exit_clear,,,,,Exit area clear
+2026-03-17 18:02:20,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 18:02:21,parking_finished,slot4,,544,54000,slot4 freed | Duration: 544s | Fee: 54000 Riel
+2026-03-17 18:02:22,heartbeat,,,,,Heartbeat
+2026-03-17 18:02:23,vehicle_at_exit,,,,,Vehicle detected at exit (2.74 cm)
+2026-03-17 18:02:23,exit_gate_opened,,exit,,,Exit gate open
+2026-03-17 18:02:24,exit_clear,,,,,Exit area clear
+2026-03-17 18:02:26,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 18:02:32,heartbeat,,,,,Heartbeat
+2026-03-17 18:02:42,heartbeat,,,,,Heartbeat
+2026-03-17 18:02:52,heartbeat,,,,,Heartbeat
+2026-03-17 18:03:03,heartbeat,,,,,Heartbeat
+2026-03-17 18:03:13,heartbeat,,,,,Heartbeat
+2026-03-17 18:03:23,heartbeat,,,,,Heartbeat
+2026-03-17 18:03:32,parking_started,slot1,,,,slot1 occupied
+2026-03-17 18:03:33,heartbeat,,,,,Heartbeat
+2026-03-17 18:03:36,parking_started,slot2,,,,slot2 occupied
+2026-03-17 18:03:39,parking_started,slot3,,,,slot3 occupied
+2026-03-17 18:03:43,heartbeat,,,,,Heartbeat
+2026-03-17 18:03:49,parking_started,slot4,,,,slot4 occupied
+2026-03-17 18:03:54,heartbeat,,,,,Heartbeat
+2026-03-17 18:04:04,heartbeat,,,,,Heartbeat
+2026-03-17 18:04:14,heartbeat,,,,,Heartbeat
+2026-03-17 18:04:19,parking_finished,slot1,,47,4000,slot1 freed | Duration: 47s | Fee: 4000 Riel
+2026-03-17 18:04:24,vehicle_at_exit,,,,,Vehicle detected at exit (2.42 cm)
+2026-03-17 18:04:24,exit_gate_opened,,exit,,,Exit gate open
+2026-03-17 18:04:24,heartbeat,,,,,Heartbeat
+2026-03-17 18:04:25,exit_clear,,,,,Exit area clear
+2026-03-17 18:04:28,parking_finished,slot2,,51,5000,slot2 freed | Duration: 51s | Fee: 5000 Riel
+2026-03-17 18:04:28,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 18:04:33,vehicle_at_exit,,,,,Vehicle detected at exit (3.72 cm)
+2026-03-17 18:04:33,exit_gate_opened,,exit,,,Exit gate open
+2026-03-17 18:04:34,exit_clear,,,,,Exit area clear
+2026-03-17 18:04:35,heartbeat,,,,,Heartbeat
+2026-03-17 18:04:37,parking_finished,slot3,,57,5000,slot3 freed | Duration: 57s | Fee: 5000 Riel
+2026-03-17 18:04:37,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 18:04:39,vehicle_at_exit,,,,,Vehicle detected at exit (5.02 cm)
+2026-03-17 18:04:39,exit_gate_opened,,exit,,,Exit gate open
+2026-03-17 18:04:40,exit_clear,,,,,Exit area clear
+2026-03-17 18:04:43,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 18:04:43,parking_finished,slot4,,54,5000,slot4 freed | Duration: 54s | Fee: 5000 Riel
+2026-03-17 18:04:45,heartbeat,,,,,Heartbeat
+2026-03-17 18:04:46,vehicle_at_exit,,,,,Vehicle detected at exit (3.72 cm)
+2026-03-17 18:04:46,exit_gate_opened,,exit,,,Exit gate open
+2026-03-17 18:04:47,exit_clear,,,,,Exit area clear
+2026-03-17 18:04:50,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 18:04:55,heartbeat,,,,,Heartbeat
+2026-03-17 18:05:05,heartbeat,,,,,Heartbeat
+2026-03-17 18:05:14,parking_started,slot1,,,,slot1 occupied
+2026-03-17 18:05:15,heartbeat,,,,,Heartbeat
+2026-03-17 18:05:22,parking_finished,slot1,,7,0,slot1 freed | Duration: 7s | Fee: 0 Riel
+2026-03-17 18:05:26,heartbeat,,,,,Heartbeat
+2026-03-17 18:05:27,parking_started,slot1,,,,slot1 occupied
+2026-03-17 18:05:30,parking_finished,slot1,,3,0,slot1 freed | Duration: 3s | Fee: 0 Riel
+2026-03-17 18:05:31,parking_started,slot2,,,,slot2 occupied
+2026-03-17 18:05:32,parking_finished,slot2,,0,0,slot2 freed | Duration: 0s | Fee: 0 Riel
+2026-03-17 18:05:36,heartbeat,,,,,Heartbeat
+2026-03-17 18:05:46,heartbeat,,,,,Heartbeat
+2026-03-17 18:05:56,heartbeat,,,,,Heartbeat
+2026-03-17 18:06:06,heartbeat,,,,,Heartbeat
+2026-03-17 18:06:16,heartbeat,,,,,Heartbeat
+2026-03-17 18:06:27,heartbeat,,,,,Heartbeat
+2026-03-17 18:06:37,heartbeat,,,,,Heartbeat
+2026-03-17 18:06:47,heartbeat,,,,,Heartbeat
+2026-03-17 18:06:56,entry_gate_opened,,entry,,,Entry gate open
+2026-03-17 18:06:57,heartbeat,,,,,Heartbeat
+2026-03-17 18:07:03,entry_gate_closed,,entry,,,Entry gate closed
+2026-03-17 18:07:07,heartbeat,,,,,Heartbeat
+2026-03-17 18:07:11,exit_gate_opened,,exit,,,Exit gate open
+2026-03-17 18:07:18,exit_gate_closed,,exit,,,Exit gate closed
+2026-03-17 18:07:18,heartbeat,,,,,Heartbeat
+2026-03-17 18:07:27,led_changed,,,,,LED turned on
+2026-03-17 18:07:28,heartbeat,,,,,Heartbeat
+2026-03-17 18:07:30,led_changed,,,,,LED turned on
+2026-03-17 18:07:33,led_changed,,,,,LED turned off
+2026-03-17 18:07:38,heartbeat,,,,,Heartbeat
+2026-03-17 18:07:48,heartbeat,,,,,Heartbeat
+2026-03-17 18:07:59,heartbeat,,,,,Heartbeat
+2026-03-17 18:08:09,heartbeat,,,,,Heartbeat
+2026-03-17 18:08:19,heartbeat,,,,,Heartbeat
+2026-03-17 18:08:29,heartbeat,,,,,Heartbeat
+2026-03-17 18:08:39,heartbeat,,,,,Heartbeat
+2026-03-17 18:08:49,heartbeat,,,,,Heartbeat
