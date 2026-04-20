@@ -120,7 +120,7 @@ Video: [Link to Video](...)
 ---
  
 ### Flowchart & Sequence Diagram
-![Flowchart](...)
+![Flowchart](images/Lab_6_Flowchart.png)
 
 ---
 ## 5. Conclusion
