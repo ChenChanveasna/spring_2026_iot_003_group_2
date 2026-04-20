@@ -63,7 +63,7 @@ The following hardware components are used in this lab:
 |                 | S            | D4       |
 
 
-![Wiring Diagram](...)
+![Wiring Diagram](images/lab6-wiring_diagram.png)
 
 
 ---
