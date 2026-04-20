@@ -73,10 +73,6 @@ The following hardware components are used in this lab:
 ### Task 1: Read UID from RFID card  
 Detect card and retrieve its unique ID (UID) 
 
-Evidence:
-
-![Task 1](...)
-
 ---
 
 ### Task 2: Match UID with student database  
@@ -84,15 +80,11 @@ Compare UID with predefined data
 - If found -> valid student
 - If not -> unknown card 
 
-Evidence: 
-[Link to Video](...)
 ---
 
 ### Task 3: Generate current datetime
 - Format: YYYY-MM-DD HH:MM:SS
 
-Evidence: 
-[Link to Video](...)
 ---
 
 ### Task 4: UID Valid Detection  
@@ -102,8 +94,6 @@ If UID is valid:
 UID, Name, StudentID, Major, DateTime
 - Send data to Firestore 
 
-Evidence: 
-[Link to Video](...)
 ---
 
 ### Task 5: UID Invalid Detection
@@ -112,11 +102,8 @@ If UID is invalid:
 - Display: "Unknown Card"
 - Do not save or send data  
 
-Evidence:
 
-![Screenshot of MIT Interface](...)
-
-Video: [Link to Video](...)
+Video: [Link to Video](https://drive.google.com/file/d/1uIVsW3y-K32KHLIOYW1Y-2VShP13MvHc/view?usp=sharing)
 ---
  
 ### Flowchart & Sequence Diagram
@@ -125,7 +112,7 @@ Video: [Link to Video](...)
 ---
 ## 5. Conclusion
 
-...
+In conclusion, the successful implementation of this Smart RFID-based System demonstratd the effective integration of local hardware control with cloud-based data management. By leveraging the ESP32 and MicroPython, the system achieves a reliable balance between real-time edge processing, such as UID identification and local SD card logging and remote synchronization via Firestore.
 
 ---
 
