@@ -61,11 +61,9 @@ The following hardware components are used in this lab:
 | Buzzer          | -            | GND      |
 |                 | +            | 5V       |
 |                 | S            | D4       |
-|-----------------|--------------|----------|
 
 
-
-![Wiring Diagram](images/Hardware_Pins.png)
+![Wiring Diagram](...)
 
 
 ---
