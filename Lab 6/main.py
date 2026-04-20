@@ -1,7 +1,6 @@
 from machine import Pin, SPI
 from mfrc522 import MFRC522
 import time
-import datetime
 import os
 import sdcard
 import urequests
@@ -26,13 +25,13 @@ SSID = "Robotic WIFI"
 PASSWORD = "rbtWIFI@2025"
 
 # Initialize RFID reader
-rfid_spi = SPI(1, baudrate=1000000, polarity=0, phase=0,
+spi = SPI(1, baudrate=1000000, polarity=0, phase=0,
         sck=Pin(18), mosi=Pin(23), miso=Pin(19))
 
-rfid_rdr = MFRC522(spi=rfid_spi, gpioRst=Pin(22), gpioCs=Pin(16))
+rdr = MFRC522(spi=spi, gpioRst=Pin(22), gpioCs=Pin(16))
 
 # Initialize SD card
-sd_spi = SPI(1, baudrate=1000000,
+sd_spi = SPI(2, baudrate=1000000,
         sck=Pin(14), mosi=Pin(15), miso=Pin(2))
 
 cs = Pin(13)
@@ -48,7 +47,7 @@ except Exception as e:
 buzzer = Pin(4, Pin.OUT)
 
 # Google FIREBASE CONFIG
-PROJECT_ID = "firestore-ID"
+PROJECT_ID = "firestore-id"
 URL ="https://firestore.googleapis.com/v1/projects/{}/databases/(default)/documents/rfid_logs".format(PROJECT_ID)
 
 def main():
@@ -56,13 +55,13 @@ def main():
     connect_wifi()
     while True:
         is_online = connect_wifi()
-        uid = read_rfid()
-        if uid:
-            if uid in VALID_STUDENT:
-                student_info = VALID_STUDENT[uid]
-                timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        uid_str = read_rfid()
+        if uid_str:
+            if uid_str in VALID_STUDENT:
+                student_info = VALID_STUDENT[uid_str]
+                timestamp = get_timestamp()
                 payload = {
-                    "uid": uid,
+                    "uid": uid_str,
                     "name": student_info["name"],
                     "studentID": student_info["studentID"],
                     "major": student_info["major"],
@@ -80,15 +79,10 @@ def main():
                     print("Error: Offline - Log saved to SD only.")
                     
             else:
-                print("Invalid UID:", uid)
+                print("Invalid UID:", uid_str)
                 activate_buzzer(3)
-            time.sleep(2)  # Delay to prevent multiple reads of the same tag
-            
-        else:
-            print("No RFID tag detected.")
-                
-        # Small sleep to keep the ESP32 stable
-        time.sleep(0.1)
+            time.sleep(2)  # Delay to prevent multiple reads of the same tag               
+        time.sleep(0.1) # Short delay to reduce CPU usage when no tag is present
 
 # Helper Functions
 def connect_wifi() -> bool:
@@ -96,7 +90,7 @@ def connect_wifi() -> bool:
     wifi = network.WLAN(network.STA_IF)
     if wifi.isconnected():
         return True
-    print("WiFi is not Connected. Connecting to WiFi", end="")
+    print("WiFi is not Connected.\nConnecting to WiFi", end="")
     wifi.active(True)
     wifi.connect(SSID, PASSWORD)
     
@@ -111,27 +105,54 @@ def connect_wifi() -> bool:
     else:
         print("\nFailed to connect to WiFi")
         return False
+def get_timestamp() -> str:
+    """ Returns the current timestamp as a string. """
+    t = time.time()
+    tmv = time.localtime(t)
+    return "%04d-%02d-%02d %02d:%02d:%02d" % (
+        tmv[0], tmv[1], tmv[2], tmv[3], tmv[4], tmv[5]
+    )
     
-def read_rfid() -> str | None:
-    """ Reads RFID tag and returns the UID as a string. Returns None if no tag is detected."""
+def read_rfid():
+    # Use a small loop inside the function to give the hardware 
     (stat, tag_type) = rdr.request(rdr.REQIDL)
     if stat == rdr.OK:
         (stat, uid) = rdr.anticoll()
         if stat == rdr.OK:
-            return "".join([str(i) for i in uid])
+            uid_str = "".join([str(i) for i in uid])
+            print("Card detected with UID:", uid_str)
+            return uid_str
     return None
 
 def write_to_sd_card(payload: dict) -> None:
-    """ Writes data to the SD card. """
+    """ Writes data to the SD card, adding a header if the file is new. """
     try:
-        # Extract date from timestamp for filename
         date_str = payload["time"].split(" ")[0].replace("-", "_")
-        with open(f"/sd/attendance_{date_str}.csv", "a") as f:
-            f.write(f"{payload['uid']},{payload['name']},{payload['studentID']},{payload['major']},{payload['time']}\n")
+        filename = f"/sd/attendance_{date_str}.csv"
+        
+        # Check if the file already exists
+        file_exists = False
+        try:
+            os.stat(filename)
+            file_exists = True
+        except OSError:
+            file_exists = False
+
+        with open(filename, "a") as f:
+            # If it's a new file, write the header row first
+            if not file_exists:
+                header = "UID,Name,StudentID,Major,Timestamp\n"
+                f.write(header)
+                print(f"Created new file: {filename} with headers.")
+
+            row = f"{payload['uid']},{payload['name']},{payload['studentID']},{payload['major']},{payload['time']}\n"
+            f.write(row)
+            
         print("Data written to SD card successfully.")
+        
     except Exception as e:
         print("Failed to write to SD card:", e)
-
+        
 def read_from_sd_card(date_str: str) -> str | None:
     """ Reads data from the SD card for a specific date. """
     try:
