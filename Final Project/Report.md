@@ -10,7 +10,7 @@ Pichetroth SORITH
 
 ---
 
-## 1. Introduction
+### 1. Introduction
 
 This project implements a WiFi-controlled robotic car using an ESP32-based architecture. 
 The system integrates real-time control, live video streaming, obstacle detection, and visual feedback via a web dashboard and Telegram notifications. 
@@ -50,14 +50,14 @@ The system is controlled remotely through a web dashboard with additional monito
 - Distance readings
 6. Receive alerts and snapshots via Telegram.
 
-## 3. System Architecture
+### 3. System Architecture
 
 The system follows a client-server IoT architecture:
 
 ![](./images/final_project_sys-architecture.png)
 
 ---
-## 4. Design Decision
+### 4. Design Decision
 
 In this project, we made several important design choices to make the car simple, smart, safe, and easy to control. Below is a clear explanation of each decision.
 
@@ -123,7 +123,7 @@ We added a manual stop button/system.
 
 ---
 
-## 5. Challenges
+### 5. Challenges
 
 - Synchronizing real-time control and video streaming
 - Power distribution for motors vs microcontrollers
@@ -133,7 +133,7 @@ We added a manual stop button/system.
 
 ---
 
-## 6. Limitations
+### 6. Limitations
 
 - Limited range due to WiFi dependency
 - Video streaming latency
@@ -143,7 +143,7 @@ We added a manual stop button/system.
 
 ---
 
-## 7. Future Improvements
+### 7. Future Improvements
 
 - Replace L298N with more efficient motor driver (e.g., TB6612FNG)
 - Add autonomous obstacle avoidance
@@ -154,7 +154,7 @@ We added a manual stop button/system.
 
 ---
 
-## 8. Conclusion
+### 8. Conclusion
 
 This project demonstrates a complete IoT-based robotic system integrating control, sensing, and real-time communication. 
 It highlights practical challenges in embedded systems, networking, and hardware-software integration while providing a scalable 
