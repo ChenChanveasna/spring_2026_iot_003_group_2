@@ -92,7 +92,7 @@ Instead of making a mobile app, we used a web browser.
 
 The car moves using left and right wheels spinning at different speeds.
 
-Why this is good:
+**Why we chose this method:**
 
 - Simple design (no steering motor needed)
 - Fewer parts → less chance of breaking
