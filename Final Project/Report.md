@@ -52,9 +52,14 @@ The system is controlled remotely through a web dashboard with additional monito
 
 ### 3. System Architecture
 
+#### 3.1 System Overview
 The system follows a client-server IoT architecture:
 
 ![](./images/final_project_sys-architecture.png)
+
+#### 3.2 System Flowchart
+
+![](./images/IOT_Final_Project-Flowchart.png)
 
 ---
 ### 4. Design Decision
