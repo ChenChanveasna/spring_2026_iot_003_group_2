@@ -10,6 +10,8 @@ Pichetroth SORITH
 
 ---
 
+### [Link to Video](https://youtu.be/26dmMD6e5S0)
+
 ### 1. Introduction
 
 This project implements a WiFi-controlled robotic car using an ESP32-based architecture. 
@@ -59,7 +61,7 @@ The system follows a client-server IoT architecture:
 
 #### 3.2 System Flowchart
 
-![](./images/IOT_Final_Project-Flowchart.png)
+![](./images/Flowchart.png)
 
 ---
 ### 4. Design Decision
