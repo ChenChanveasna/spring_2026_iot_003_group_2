@@ -1,101 +1,12 @@
-"""
-car_controller.py — RC Car Control Module
-==========================================
-Handles all hardware control for the 4WD surveillance car:
-  - Motor control (L298N + PWM, explicit differential steering)
-  - Ultrasonic obstacle sensing (HC-SR04) with hardware IRQ
-  - Distance-based speed scaling (always-on forward safety)
-  - Neopixel lighting
-  - E-STOP lock / resume state
-
-Pin Map (L298N ↔ ESP32)
------------------------
-  L298N | ESP32 GPIO | Description
-  ------|------------|-------------------------------
-  IN1   | GPIO 25    | Left motor direction A
-  IN2   | GPIO 26    | Left motor direction B
-  ENA   | GPIO 32    | Left motor PWM enable   ← MUST remove jumper
-  IN3   | GPIO 27    | Right motor direction A
-  IN4   | GPIO 14    | Right motor direction B
-  ENB   | GPIO 33    | Right motor PWM enable  ← MUST remove jumper
-
-  HC-SR04 | GPIO | Notes
-  --------|------|-------------------------------
-  TRIG    |  5   | 10µs pulse output
-  ECHO    | 18   | Hardware IRQ, rising+falling
-
-  Neopixel | GPIO | Notes
-  ---------|------|------
-  DATA     |  4   | WS2812B strip, 8 LEDs
-
-CRITICAL wiring note
---------------------
-ENA and ENB jumpers on the L298N board MUST be removed before wiring
-to GPIO 32/33. With the jumper in place the enable line is hardwired
-HIGH (full speed, always on) — PWM does nothing and you cannot control
-speed. Remove the jumper, then connect the GPIO.
-
-Turn logic
-----------
-This module uses EXPLICIT per-side direction control (not a blended
-forward+turn formula). Turns are counter-rotation pivots:
-
-  turn_left:  LEFT  motor → reverse  at base_speed × TURN_FACTOR
-              RIGHT motor → forward  at base_speed
-  turn_right: LEFT  motor → forward  at base_speed
-              RIGHT motor → reverse  at base_speed × TURN_FACTOR
-
-Why counter-rotation and not arc turns?
-  Arc turns (both sides forward, one reduced) need ~0.6 × base_speed
-  on the inner wheel to overcome static friction on carpet/hard floors.
-  Below that threshold the inner wheel stalls and the car lurches
-  unpredictably. Counter-rotation gives a clear ~41% duty differential
-  that clears friction reliably on any surface. The turn is sharper but
-  consistent and controllable.
-
-Hardware IRQ safety
--------------------
-The HC-SR04 ECHO pin is attached to a hardware interrupt (IRQ) that
-fires on every rising and falling edge. The ISR:
-  1. Records rising-edge timestamp
-  2. On falling edge: computes distance and updates self._distance
-  3. If distance ≤ DIST_FULL_STOP AND car is moving forward → cuts
-     both PWM channels to 0 immediately, at the hardware level,
-     regardless of what the main loop is doing.
-
-The polling path in update() is a secondary/redundant read that keeps
-self._distance fresh for the /status endpoint.
-
-Usage in main.py
-----------------
-    from car_controller import CarController
-    car = CarController()
-    car.update()     # call every main loop tick (~10ms)
-"""
-
 import time
 from machine import Pin, PWM
 import neopixel
 
 
 # ── PWM Constants ─────────────────────────────────────────────────────────────
-PWM_FREQ    = 1000    # 1 kHz — good L298N balance: low heat, smooth control
-MAX_DUTY    = 1023    # ESP32 MicroPython 10-bit PWM range (0–1023)
-TURN_FACTOR = 0.45    # Inner-wheel fraction during turns
-#
-# Tuning guide:
-#   base_speed  0.60–0.75  → safe starting range for most hobby motors
-#   base_speed  > 0.90     → needs good battery and well-matched motors
-#   TURN_FACTOR 0.30–0.35  → sharper/tighter pivot
-#   TURN_FACTOR 0.55–0.65  → gentler arc (better at high speed)
-#
-# Why TURN_FACTOR = 0.45:
-#   Outer wheel:  0.70 × 1023 ≈ duty 716
-#   Inner wheel:  0.70 × 0.45 × 1023 ≈ duty 322  (~46%)
-#   Most hobby DC motors need ≥ 25% duty to overcome static friction.
-#   0.45 clears that threshold reliably. Below 0.30 the inner wheel
-#   often stalls, causing unpredictable lurching.
-
+PWM_FREQ    = 1000
+MAX_DUTY    = 1023
+TURN_FACTOR = 0.45
 
 class CarController:
     """

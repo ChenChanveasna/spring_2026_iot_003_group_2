@@ -20,6 +20,8 @@ from telegram_notifier import TelegramNotifier
 load_dotenv()
 
 # ─── Configuration ────────────────────────────────────────────────────────────
+# You can change this to the mDNS name (car4wd.local) or IP address of your ESP32 car controller and ESP32-CAM.
+# The app will attempt mDNS resolution at startup and fall back to these values if it fails.
 ESP32_CAR_HOST = os.getenv("ESP32_CAR_HOST", "10.30.0.32")
 ESP32_CAM_HOST = os.getenv("ESP32_CAM_HOST", "10.30.0.31")
 
