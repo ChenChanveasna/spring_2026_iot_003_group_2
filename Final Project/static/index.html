@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>CAR-4WD // CONTROL</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Exo+2:wght@300;600;900&display=swap" rel="stylesheet">
+<style>
+/* ── Reset ──────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #080c10;
+  --panel:   #0d1520;
+  --border:  #1a3a5c;
+  --accent:  #00e5ff;
+  --accent2: #ff6b35;
+  --danger:  #ff2d55;
+  --safe:    #39ff8a;
+  --warn:    #ffc107;
+  --text:    #c8dae8;
+  --dim:     #3a5a72;
+  --mono:    'Share Tech Mono', monospace;
+  --sans:    'Exo 2', sans-serif;
+  --glow:    0 0 12px var(--accent);
+  --glow2:   0 0 12px var(--accent2);
+}
+
+html, body {
+  width: 100%; height: 100%;
+  background: var(--bg); color: var(--text);
+  font-family: var(--sans);
+  overflow: hidden;
+}
+
+/* CRT scanline overlay */
+body::after {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:999;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.07) 2px,rgba(0,0,0,0.07) 4px);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   DESKTOP LAYOUT (> 1024px)
+   Grid: [left 250px] [centre 1fr] [right 250px]
+   Rows: [header 56px] [main 1fr] [controls 200px] [footer 44px]
+═══════════════════════════════════════════════════════════════════════════ */
+.shell {
+  display: grid;
+  grid-template-columns: 250px 1fr 250px;
+  grid-template-rows: 56px 1fr 200px 44px;
+  height: 100vh;
+  gap: 1px;
+  background: var(--border);
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+.header {
+  grid-column: 1 / -1;
+  background: var(--panel);
+  display: flex; align-items: center; padding: 0 20px; gap: 16px;
+}
+.logo { font-family:var(--mono); font-size:1.05rem; color:var(--accent); letter-spacing:0.15em; text-shadow:var(--glow); white-space:nowrap; }
+.logo span { color:var(--accent2); }
+.header-status { margin-left:auto; display:flex; align-items:center; gap:18px; font-family:var(--mono); font-size:0.7rem; color:var(--dim); flex-wrap:wrap; justify-content:flex-end; }
+.dot { width:8px; height:8px; border-radius:50%; background:var(--dim); display:inline-block; margin-right:5px; transition:all 0.3s; flex-shrink:0; }
+.dot.online { background:var(--safe); box-shadow:0 0 8px var(--safe); }
+.dot.warn   { background:var(--warn); box-shadow:0 0 8px var(--warn); }
+.dot.danger { background:var(--danger); box-shadow:0 0 8px var(--danger); }
+
+/* ── Side panels ────────────────────────────────────────────────────────── */
+.panel { background:var(--panel); padding:14px; display:flex; flex-direction:column; gap:10px; overflow:hidden; min-width:0; }
+.panel-title { font-family:var(--mono); font-size:0.62rem; letter-spacing:0.2em; color:var(--dim); text-transform:uppercase; border-bottom:1px solid var(--border); padding-bottom:7px; }
+
+/* ── Camera column ───────────────────────────────────────────────────────── */
+.camera-col {
+  background: #000;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.cam-url-bar {
+  flex-shrink: 0; height: 36px;
+  background: rgba(5,10,16,0.95); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px; padding: 0 12px;
+  font-family: var(--mono); font-size: 0.62rem;
+}
+.cam-url-label { color:var(--dim); white-space:nowrap; }
+.cam-url-input {
+  flex:1; min-width:0; background:transparent; border:none; border-bottom:1px solid var(--border);
+  color:var(--accent); font-family:var(--mono); font-size:0.62rem; outline:none; padding:2px 0;
+}
+.cam-url-input:focus { border-color:var(--accent); }
+.cam-apply-btn {
+  background:transparent; border:1px solid var(--border); color:var(--dim);
+  font-family:var(--mono); font-size:0.6rem; letter-spacing:0.08em;
+  padding:3px 10px; cursor:pointer; border-radius:3px; white-space:nowrap; transition:all 0.12s;
+  touch-action:manipulation;
+}
+.cam-apply-btn:hover { border-color:var(--accent); color:var(--accent); }
+.cam-status-pill {
+  padding:2px 8px; border-radius:10px; font-size:0.58rem; letter-spacing:0.1em;
+  background:var(--border); color:var(--dim); white-space:nowrap; transition:all 0.3s; border:1px solid transparent;
+}
+.cam-status-pill.streaming { background:rgba(57,255,138,0.12); color:var(--safe);   border-color:var(--safe); }
+.cam-status-pill.loading   { background:rgba(255,193,7,0.12);  color:var(--warn);   border-color:var(--warn); }
+.cam-status-pill.error     { background:rgba(255,45,85,0.12);  color:var(--danger); border-color:var(--danger); }
+
+.cam-viewport {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 4 / 3;
+  align-self: center;
+  width: 100%;
+  max-height: 100%;
+}
+.cam-feed {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: fill;
+  display: block;
+  opacity: 0; transition: opacity 0.4s;
+}
+.cam-feed.loaded { opacity: 1; }
+
+.cam-offline {
+  position:absolute; inset:0;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+  background:radial-gradient(ellipse at center, #0d1a26 0%, #050a0e 100%);
+}
+.cam-offline-icon { font-size:2.5rem; opacity:0.25; }
+.cam-offline-text { font-family:var(--mono); font-size:0.7rem; color:var(--dim); letter-spacing:0.15em; }
+.cam-offline-url  { font-family:var(--mono); font-size:0.56rem; color:var(--border); word-break:break-all; text-align:center; padding:0 12px; }
+.cam-reconnect {
+  margin-top:6px; background:transparent; border:1px solid var(--border); color:var(--dim);
+  font-family:var(--mono); font-size:0.6rem; letter-spacing:0.1em;
+  padding:5px 16px; cursor:pointer; border-radius:3px; transition:all 0.15s;
+  touch-action:manipulation;
+}
+.cam-reconnect:hover { border-color:var(--accent); color:var(--accent); }
+
+.cam-hud { position:absolute; inset:0; pointer-events:none; display:flex; flex-direction:column; justify-content:space-between; padding:10px 12px; }
+.cam-hud-top,.cam-hud-bot { display:flex; justify-content:space-between; }
+.cam-hud-bot { align-items:flex-end; }
+.cam-tag { font-family:var(--mono); font-size:0.58rem; color:var(--accent); background:rgba(0,0,0,0.6); padding:3px 8px; border:1px solid rgba(0,229,255,0.25); letter-spacing:0.12em; }
+.cam-rec { display:none; align-items:center; gap:5px; font-family:var(--mono); font-size:0.58rem; color:var(--danger); background:rgba(0,0,0,0.6); padding:3px 8px; border:1px solid rgba(255,45,85,0.25); }
+.cam-rec-dot { width:6px; height:6px; border-radius:50%; background:var(--danger); animation:blink 1s ease infinite alternate; }
+
+.cam-corner { position:absolute; width:16px; height:16px; border-color:var(--accent); border-style:solid; opacity:0.5; }
+.cam-corner.tl { top:8px; left:8px; border-width:2px 0 0 2px; }
+.cam-corner.tr { top:8px; right:8px; border-width:2px 2px 0 0; }
+.cam-corner.bl { bottom:8px; left:8px; border-width:0 0 2px 2px; }
+.cam-corner.br { bottom:8px; right:8px; border-width:0 2px 2px 0; }
+.cam-crosshair { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:36px; height:36px; opacity:0.2; }
+.cam-crosshair::before { content:''; position:absolute; width:1px; height:36px; left:50%; top:0; background:var(--accent); }
+.cam-crosshair::after  { content:''; position:absolute; width:36px; height:1px; top:50%; left:0; background:var(--accent); }
+
+/* ── Control bar ─────────────────────────────────────────────────────────── */
+.control-bar {
+  grid-column: 1 / -1;
+  background: var(--panel); border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  gap: 28px; padding: 14px 20px;
+  position: relative;
+}
+
+.dpad {
+  display: grid;
+  grid-template-columns: repeat(3, 58px);
+  grid-template-rows: repeat(3, 58px);
+  gap: 5px; flex-shrink: 0;
+}
+.dpad-btn {
+  background:transparent; border:1px solid var(--border); color:var(--dim);
+  font-size:1.25rem; cursor:pointer; border-radius:6px;
+  display:flex; align-items:center; justify-content:center;
+  transition:all 0.1s; user-select:none; -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+.dpad-btn:hover { border-color:var(--accent); color:var(--accent); }
+.dpad-btn.active { background:rgba(0,229,255,0.12); border-color:var(--accent); color:var(--accent); box-shadow:var(--glow); }
+.dpad-blank { pointer-events:none; }
+.dpad-stop-btn { font-size:0.58rem !important; letter-spacing:0.06em; color:var(--danger) !important; border-color:var(--danger) !important; }
+
+.dpad-btn:disabled { opacity:0.25; cursor:not-allowed; pointer-events:none; }
+input[type=range]:disabled { opacity:0.3; cursor:not-allowed; }
+
+.stop-btn.locked {
+  background: #1a0a0e;
+  color: var(--danger);
+  border: 2px solid var(--danger);
+  box-shadow: 0 0 18px rgba(255,45,85,0.6), inset 0 0 12px rgba(255,45,85,0.1);
+  animation: estop-pulse 1.2s ease infinite alternate;
+}
+@keyframes estop-pulse {
+  from { box-shadow: 0 0 14px rgba(255,45,85,0.5), inset 0 0 8px rgba(255,45,85,0.08); }
+  to   { box-shadow: 0 0 28px rgba(255,45,85,0.9), inset 0 0 16px rgba(255,45,85,0.15); }
+}
+.stop-btn.resume {
+  background: var(--safe); color: #000; border: none;
+  box-shadow: 0 0 16px rgba(57,255,138,0.5);
+  animation: none; letter-spacing: 0.18em;
+}
+.stop-btn.resume:hover { background: #55ffaa; box-shadow: 0 0 24px rgba(57,255,138,0.8); }
+
+.locked-banner {
+  display: none;
+  position: absolute; top: 0; left: 0; right: 0;
+  background: rgba(255,45,85,0.12);
+  border-bottom: 1px solid var(--danger);
+  font-family: var(--mono); font-size: 0.62rem; color: var(--danger);
+  letter-spacing: 0.18em; text-align: center; padding: 4px 0;
+  animation: blink 0.8s ease infinite alternate; z-index: 10;
+}
+.locked-banner.visible { display: block; }
+
+.ctrl-divider { width:1px; height:130px; background:var(--border); flex-shrink:0; }
+
+.ctrl-col { display:flex; flex-direction:column; align-items:center; gap:12px; }
+.speed-row { display:flex; align-items:center; gap:10px; width:190px; }
+.speed-label { font-family:var(--mono); font-size:0.62rem; color:var(--dim); width:46px; text-align:right; }
+.speed-val   { font-family:var(--mono); font-size:0.88rem; color:var(--accent); width:38px; text-align:center; }
+input[type=range] { flex:1; -webkit-appearance:none; height:4px; background:var(--border); border-radius:2px; outline:none; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:14px; height:14px; border-radius:50%; background:var(--accent); box-shadow:var(--glow); cursor:pointer; }
+
+.stop-btn {
+  background:var(--danger); color:white; border:none; font-family:var(--mono);
+  font-size:0.78rem; letter-spacing:0.18em; padding:9px 22px; cursor:pointer;
+  border-radius:4px; box-shadow:0 0 14px rgba(255,45,85,0.4); transition:all 0.15s;
+  touch-action:manipulation;
+}
+.stop-btn:hover { background:#ff0038; box-shadow:0 0 22px rgba(255,45,85,0.8); }
+.stop-btn:active { transform:scale(0.96); }
+
+.kb-hint { font-family:var(--mono); font-size:0.56rem; color:var(--dim); line-height:2.1; }
+
+/* ── Telemetry widgets ──────────────────────────────────────────────────── */
+.sensor-bar { display:flex; flex-direction:column; gap:4px; }
+.sensor-label { font-family:var(--mono); font-size:0.6rem; color:var(--dim); display:flex; justify-content:space-between; }
+.sensor-track { height:5px; background:var(--border); border-radius:3px; overflow:hidden; }
+.sensor-fill  { height:100%; border-radius:3px; transition:width 0.25s, background 0.25s; }
+
+.cmd-badge {
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em;
+  padding: 4px 6px; border-radius: 4px; border: 1px solid var(--border);
+  color: var(--dim); background: transparent; text-align: left;
+  transition: all 0.15s;
+}
+.cmd-badge.active {
+  background: rgba(0,229,255,0.12); border-color: var(--accent);
+  color: var(--accent); box-shadow: var(--glow);
+}
+.cmd-badge[data-cmd="stop"].active {
+  background: rgba(255,45,85,0.12); border-color: var(--danger);
+  color: var(--danger); box-shadow: 0 0 10px var(--danger);
+}
+.dist-value { font-family:var(--mono); font-size:2rem; color:var(--safe); text-align:center; line-height:1; text-shadow:0 0 12px var(--safe); transition:color 0.3s, text-shadow 0.3s; }
+.dist-value.warn   { color:var(--warn);   text-shadow:0 0 12px var(--warn); }
+.dist-value.danger { color:var(--danger); text-shadow:0 0 12px var(--danger); }
+.dist-unit { font-size:0.72rem; color:var(--dim); font-family:var(--mono); text-align:center; margin-top:2px; }
+.obs-badge { display:none; background:var(--danger); color:white; font-family:var(--mono); font-size:0.65rem; letter-spacing:0.12em; padding:3px 8px; border-radius:3px; animation:blink 0.6s ease infinite alternate; box-shadow:0 0 12px var(--danger); }
+.obs-badge.visible { display:block; }
+@keyframes blink { from{opacity:1} to{opacity:0.3} }
+
+/* ── Log ─────────────────────────────────────────────────────────────────── */
+.log-scroll { flex:1; overflow-y:auto; display:flex; flex-direction:column-reverse; gap:2px; }
+.log-scroll::-webkit-scrollbar { width:3px; }
+.log-scroll::-webkit-scrollbar-thumb { background:var(--border); }
+.log-entry { font-family:var(--mono); font-size:0.57rem; color:var(--dim); padding:2px 5px; border-left:2px solid var(--border); line-height:1.4; }
+.log-entry.move  { border-color:var(--accent);  color:var(--text); }
+.log-entry.stop  { border-color:var(--danger);  color:var(--danger); }
+.log-entry.light { border-color:var(--warn);    color:var(--warn); }
+.log-entry.snap  { border-color:var(--accent2); color:var(--accent2); }
+.btn-row { display:flex; gap:6px; }
+.ctrl-btn {
+  flex:1; background:transparent; border:1px solid var(--border); color:var(--dim);
+  font-family:var(--mono); font-size:0.6rem; letter-spacing:0.06em; padding:7px 4px;
+  cursor:pointer; border-radius:4px; transition:all 0.15s; text-transform:uppercase; text-align:center;
+  touch-action:manipulation;
+}
+.ctrl-btn:hover  { border-color:var(--accent2); color:var(--accent2); }
+.ctrl-btn.active { background:rgba(255,107,53,0.14); border-color:var(--accent2); color:var(--accent2); box-shadow:var(--glow2); }
+.auto-row { display:flex; align-items:center; gap:6px; }
+.auto-row label { font-family:var(--mono); font-size:0.58rem; color:var(--dim); }
+.auto-row input[type=number] { width:42px; background:var(--bg); border:1px solid var(--border); color:var(--text); font-family:var(--mono); font-size:0.65rem; padding:3px 4px; border-radius:3px; text-align:center; outline:none; }
+
+/* ── Snapshot gallery ────────────────────────────────────────────────────── */
+.snap-gallery { overflow-y:auto; display:flex; flex-direction:column; gap:4px; max-height:140px; min-height:40px; }
+.snap-gallery::-webkit-scrollbar { width:3px; }
+.snap-gallery::-webkit-scrollbar-thumb { background:var(--border); }
+.snap-item { display:flex; align-items:center; gap:8px; font-family:var(--mono); font-size:0.72rem; color:var(--text); padding:5px 7px; border-left:2px solid var(--border); border-radius:2px; transition:all 0.12s; white-space:nowrap; overflow:hidden; }
+.snap-item:hover { border-color:var(--accent2); color:var(--accent2); background:rgba(255,107,53,0.07); }
+.snap-item-icon { flex-shrink:0; font-size:0.9rem; }
+.snap-item-name { flex:1; overflow:hidden; text-overflow:ellipsis; font-size:0.72rem; }
+.snap-item-dl { flex-shrink:0; text-decoration:none; color:var(--accent); font-size:0.85rem; padding:2px 8px; border:1px solid var(--accent); border-radius:3px; transition:all 0.12s; line-height:1.6; letter-spacing:0.05em; background:rgba(0,229,255,0.06); }
+.snap-item-dl:hover { background:rgba(0,229,255,0.18); box-shadow:var(--glow); color:#fff; border-color:#fff; }
+.snap-empty { font-family:var(--mono); font-size:0.65rem; color:var(--border); text-align:center; padding:12px 0; }
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+.footer { grid-column:1/-1; background:var(--panel); border-top:1px solid var(--border); display:flex; align-items:center; padding:0 14px; gap:18px; font-family:var(--mono); font-size:0.6rem; color:var(--dim); flex-wrap:wrap; }
+.footer-cmd { padding:1px 7px; border:1px solid var(--border); border-radius:3px; color:var(--text); }
+#ping-display { margin-left:auto; }
+
+/* Mobile tab nav — hidden by default (desktop) */
+.mobile-tabs { display:none; }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   TABLET LAYOUT (769px – 1024px)
+═══════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .shell {
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: 48px 1fr 220px 40px;
+  }
+  .logo { font-size:0.88rem; letter-spacing:0.1em; }
+  .header-status { gap:12px; font-size:0.65rem; }
+
+  .dpad {
+    grid-template-columns: repeat(3, 52px);
+    grid-template-rows: repeat(3, 52px);
+    gap: 4px;
+  }
+  .dpad-btn { font-size:1.1rem; }
+  .ctrl-divider { height:110px; }
+  .speed-row { width:160px; }
+  .control-bar { gap:18px; padding:10px 14px; }
+  .kb-hint { font-size:0.52rem; line-height:1.9; }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   MOBILE LAYOUT (≤ 768px)
+   Single-column: Header → Camera → Controls → Tabs → Panel → Footer
+═══════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Allow page to scroll on mobile */
+  html, body { overflow: auto; height: auto; }
+
+  .shell {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    height: auto;
+    background: var(--bg);
+    gap: 0;
+  }
+
+  /* Header */
+  .header {
+    order: 1;
+    padding: 0 12px; gap: 10px; min-height: 48px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .logo { font-size: 0.8rem; letter-spacing: 0.07em; }
+  .logo-sub { display: none; } /* hide " // SURVEILLANCE CONTROL" on small screens */
+  .header-status { gap: 8px; font-size: 0.6rem; }
+  #ts-display { display: none; }
+
+  /* Camera — full width, order 2 */
+  .camera-col {
+    order: 2;
+    width: 100%;
+    flex-shrink: 0;
+  }
+  /* URL bar wraps on mobile */
+  .cam-url-bar {
+    height: auto;
+    flex-wrap: wrap;
+    padding: 6px 10px;
+    gap: 6px;
+  }
+  .cam-url-label { display: none; }
+  .cam-url-input { width: 100%; flex-basis: 100%; font-size: 0.7rem; padding: 4px 0; }
+  .cam-apply-btn { padding: 6px 14px; font-size: 0.62rem; min-height: 32px; }
+  #cam-res-select { min-height: 28px; font-size: 0.6rem; }
+
+  /* Camera viewport stays 4:3 */
+  .cam-viewport { width: 100%; align-self: unset; max-height: none; }
+
+  /* Control bar — order 3, stacked vertically */
+  .control-bar {
+    order: 3;
+    grid-column: unset;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 16px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    flex-wrap: nowrap;
+  }
+  .ctrl-divider { display: none; }
+
+  /* Larger D-pad for touch */
+  .dpad {
+    grid-template-columns: repeat(3, 72px);
+    grid-template-rows: repeat(3, 72px);
+    gap: 6px;
+  }
+  .dpad-btn { font-size: 1.5rem; border-radius: 8px; }
+  .dpad-stop-btn { font-size: 0.65rem !important; }
+
+  /* Speed + E-stop row */
+  .ctrl-col { gap: 12px; width: 100%; max-width: 320px; }
+  .speed-row { width: 100%; }
+  .stop-btn { width: 100%; padding: 13px 16px; font-size: 0.84rem; }
+
+  /* Hide keyboard shortcut hint */
+  .kb-hint { display: none; }
+
+  /* Locked banner */
+  .locked-banner { font-size: 0.55rem; letter-spacing: 0.1em; }
+
+  /* Mobile tab nav — order 4 */
+  .mobile-tabs {
+    display: flex;
+    order: 4;
+    width: 100%;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .tab-btn {
+    flex: 1; background: transparent; border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--dim); font-family: var(--mono); font-size: 0.62rem;
+    letter-spacing: 0.12em; padding: 11px 6px; cursor: pointer;
+    text-transform: uppercase; transition: all 0.15s;
+    touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+  }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-btn:hover  { color: var(--text); }
+
+  /* Telemetry panel — order 5, hidden until tab active */
+  .panel-telemetry {
+    order: 5;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    min-height: 240px;
+  }
+  .panel-telemetry.tab-active { display: flex; }
+
+  /* Aux panel — order 5 (same slot), hidden until tab active */
+  .panel-aux {
+    order: 5;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    min-height: 240px;
+  }
+  .panel-aux.tab-active { display: flex; }
+
+  /* Footer — order 6 */
+  .footer {
+    order: 6;
+    grid-column: unset;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px 12px;
+    min-height: 36px;
+    font-size: 0.58rem;
+  }
+  #ping-display { margin-left: auto; }
+
+  /* Touch-friendly button sizes */
+  .ctrl-btn { min-height: 40px; font-size: 0.62rem; }
+  .cam-reconnect { min-height: 40px; padding: 8px 16px; }
+
+  /* Expand scrollable areas */
+  .log-scroll { min-height: 100px; max-height: 160px; }
+  .snap-gallery { max-height: 100px; }
+
+  .dist-value { font-size: 1.6rem; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   VERY SMALL SCREENS (≤ 380px)
+═══════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 380px) {
+  .logo { font-size: 0.68rem; }
+  .header-status { gap: 6px; font-size: 0.55rem; }
+  .dpad {
+    grid-template-columns: repeat(3, 64px);
+    grid-template-rows: repeat(3, 64px);
+    gap: 5px;
+  }
+  .dpad-btn { font-size: 1.3rem; }
+  .ctrl-col { max-width: 280px; }
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ROW 1: Header -->
+  <header class="header">
+    <div class="logo">CAR<span>-4WD</span><span class="logo-sub"> // SURVEILLANCE CONTROL</span></div>
+    <div class="header-status">
+      <span><span class="dot" id="esp-dot"></span>ESP32</span>
+      <span><span class="dot" id="api-dot"></span>API</span>
+      <span><span class="dot" id="cam-dot"></span>CAM</span>
+      <span id="ts-display">--:--:--</span>
+    </div>
+  </header>
+
+  <!-- ROW 2 LEFT: Telemetry panel -->
+  <section class="panel panel-telemetry" id="panel-telemetry">
+    <div class="panel-title">// OBSTACLE SENSOR</div>
+    <div class="dist-value" id="dist-val">---</div>
+    <div class="dist-unit">CENTIMETERS</div>
+    <div class="sensor-bar">
+      <div class="sensor-label"><span>PROXIMITY</span><span id="dist-pct">0%</span></div>
+      <div class="sensor-track"><div class="sensor-fill" id="dist-bar" style="width:0%;background:var(--safe)"></div></div>
+    </div>
+    <div class="obs-badge" id="obs-badge">⚠ OBSTACLE STOP</div>
+    <div class="panel-title" style="margin-top:4px">// MOTOR STATE</div>
+    <div style="display:flex;flex-direction:column;gap:5px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+        <div class="cmd-badge" id="cmd-forward"  data-cmd="forward">▲ FWD</div>
+        <div class="cmd-badge" id="cmd-backward" data-cmd="backward">▼ BWD</div>
+        <div class="cmd-badge" id="cmd-left"     data-cmd="left">◀ LEFT</div>
+        <div class="cmd-badge" id="cmd-right"    data-cmd="right">▶ RIGHT</div>
+      </div>
+      <div class="cmd-badge" id="cmd-stop" data-cmd="stop" style="text-align:center">■ STOP</div>
+    </div>
+    <div class="sensor-bar" style="margin-top:4px">
+      <div class="sensor-label"><span>SPEED</span><span id="sp-val">0%</span></div>
+      <div class="sensor-track"><div class="sensor-fill" id="sp-bar" style="width:0%;background:var(--safe)"></div></div>
+    </div>
+  </section>
+
+  <!-- ROW 2 CENTRE: Camera -->
+  <div class="camera-col">
+    <div class="cam-url-bar">
+      <span class="cam-url-label">// CAM STREAM</span>
+      <input type="text" class="cam-url-input" id="cam-url-input" value="http://4wd-cam.local:81/stream" spellcheck="false">
+      <select id="cam-res-select" style="background:var(--bg);border:1px solid var(--border);color:var(--dim);font-family:var(--mono);font-size:0.58rem;padding:2px 4px;border-radius:3px;outline:none;cursor:pointer;">
+        <option value="4/3"  selected>4:3 (VGA/SVGA)</option>
+        <option value="16/9">16:9 (WQXGA)</option>
+        <option value="3/2" >3:2 (UXGA)</option>
+      </select>
+      <button class="cam-apply-btn" id="cam-apply-btn">CONNECT</button>
+      <span class="cam-status-pill" id="cam-status-pill">OFFLINE</span>
+    </div>
+
+    <div class="cam-viewport">
+      <div class="cam-offline" id="cam-offline">
+        <div class="cam-offline-icon">📷</div>
+        <div class="cam-offline-text">Camera feed disconnected</div>
+        <div class="cam-offline-url" id="cam-offline-url">http://4wd-cam.local:81/stream</div>
+        <button class="cam-reconnect" id="cam-reconnect-btn">↺ RECONNECT</button>
+      </div>
+      <img class="cam-feed" id="cam-feed" alt="">
+      <div class="cam-hud">
+        <div class="cam-hud-top">
+          <div class="cam-tag" id="cam-hud-label">CAM-01 // OFFLINE</div>
+          <div class="cam-rec" id="cam-rec-badge"><div class="cam-rec-dot"></div>LIVE</div>
+        </div>
+        <div class="cam-hud-bot">
+          <div class="cam-tag" id="cam-ts-hud">--:--:--</div>
+          <div class="cam-tag" id="cam-fps-hud">-- FPS</div>
+        </div>
+      </div>
+      <div class="cam-corner tl"></div>
+      <div class="cam-corner tr"></div>
+      <div class="cam-corner bl"></div>
+      <div class="cam-corner br"></div>
+      <div class="cam-crosshair"></div>
+    </div>
+  </div>
+
+  <!-- ROW 2 RIGHT: Aux controls + log -->
+  <section class="panel panel-aux" id="panel-aux">
+    <div class="panel-title">// AUXILIARY</div>
+    <div class="btn-row">
+      <button class="ctrl-btn" id="light-btn">💡 LIGHTS</button>
+      <button class="ctrl-btn" id="snap-btn">📸 SNAP</button>
+    </div>
+    <div class="auto-row">
+      <label>AUTO</label>
+      <input type="number" id="snap-interval" value="10" min="2" max="300">
+      <label>SEC</label>
+      <button class="ctrl-btn" id="autosnap-btn" style="flex:0;padding:5px 8px">▶</button>
+    </div>
+    <div class="panel-title" style="margin-top:2px">// SNAPSHOTS <span id="snap-gallery-count" style="color:var(--accent2)"></span></div>
+    <div class="snap-gallery" id="snap-gallery">
+      <div class="snap-empty" id="snap-empty">No snapshots yet</div>
+    </div>
+    <div class="btn-row">
+      <button class="ctrl-btn" id="gallery-refresh-btn">↻ LIST</button>
+    </div>
+    <div class="panel-title" style="margin-top:2px">// TELEMETRY LOG</div>
+    <div class="log-scroll" id="log-scroll"></div>
+    <div class="btn-row" style="margin-top:auto">
+      <button class="ctrl-btn" id="refresh-btn">↻ REFRESH</button>
+      <button class="ctrl-btn" id="download-log-btn" title="Download telemetry.csv">⬇ CSV</button>
+      <button class="ctrl-btn" id="clear-btn">✕ CLEAR</button>
+    </div>
+  </section>
+
+  <!-- ROW 3: Control bar — full width -->
+  <div class="control-bar">
+    <div class="locked-banner" id="locked-banner">⚠ CONTROLS LOCKED — PRESS RESUME TO DRIVE</div>
+
+    <div class="dpad">
+      <div class="dpad-blank"></div>
+      <button class="dpad-btn" data-dir="fwd">▲</button>
+      <div class="dpad-blank"></div>
+      <button class="dpad-btn" data-dir="left">◀</button>
+      <button class="dpad-btn dpad-stop-btn" data-dir="stop">STOP</button>
+      <button class="dpad-btn" data-dir="right">▶</button>
+      <div class="dpad-blank"></div>
+      <button class="dpad-btn" data-dir="bwd">▼</button>
+      <div class="dpad-blank"></div>
+    </div>
+
+    <div class="ctrl-divider"></div>
+
+    <div class="ctrl-col">
+      <div class="speed-row">
+        <div class="speed-label">SPEED</div>
+        <input type="range" id="speed-slider" min="10" max="100" value="70">
+        <div class="speed-val" id="speed-disp">70%</div>
+      </div>
+      <button class="stop-btn" id="estop-btn">⬛ EMERGENCY STOP</button>
+    </div>
+
+    <div class="ctrl-divider"></div>
+
+    <div class="kb-hint">
+      W / ▲ &nbsp;&nbsp;Forward<br>
+      S / ▼ &nbsp;&nbsp;Backward<br>
+      A / ◀ &nbsp;&nbsp;Turn left<br>
+      D / ▶ &nbsp;&nbsp;Turn right<br>
+      SPACE &nbsp;&nbsp;Stop
+    </div>
+  </div>
+
+  <!-- Mobile tab navigation (hidden on desktop via CSS) -->
+  <nav class="mobile-tabs" id="mobile-tabs" aria-label="Panel navigation">
+    <button class="tab-btn active" data-tab="telemetry">// TELEMETRY</button>
+    <button class="tab-btn"        data-tab="aux">// AUXILIARY</button>
+  </nav>
+
+  <!-- ROW 4: Footer -->
+  <footer class="footer">
+    <span>CMD: <span class="footer-cmd" id="last-cmd">—</span></span>
+    <span>SNAPS: <span id="snap-count">0</span></span>
+    <span id="ping-display">PING: —ms</span>
+  </footer>
+
+</div>
+
+<script>
+// ── Config ────────────────────────────────────────────────────────────────
+const API = `${window.location.protocol}//${window.location.hostname}:8000`;
+const HOLD_REPEAT   = 80;
+const SEND_DEBOUNCE = 40;
+const STATUS_POLL   = 1500;
+
+// ── State ─────────────────────────────────────────────────────────────────
+let speed = 70, lightOn = false, autoSnapOn = false, snapCount = 0;
+let activeKeys = new Set(), holdInterval = null, lastSendTime = 0;
+let controlsLocked = false;
+let currentCmd = "stop";
+
+function keysToCmd() {
+  if (activeKeys.has("fwd"))   return "forward";
+  if (activeKeys.has("bwd"))   return "backward";
+  if (activeKeys.has("left"))  return "left";
+  if (activeKeys.has("right")) return "right";
+  return "stop";
+}
+
+// ── API ───────────────────────────────────────────────────────────────────
+async function apiFetch(path) {
+  const t0 = performance.now();
+  try {
+    const r = await fetch(API + path);
+    document.getElementById("ping-display").textContent = `PING: ${Math.round(performance.now()-t0)}ms`;
+    document.getElementById("api-dot").className = "dot online";
+    return await r.json();
+  } catch {
+    document.getElementById("api-dot").className = "dot danger";
+    return null;
+  }
+}
+
+// ── SOFT STOP ─────────────────────────────────────────────────────────────
+async function sendSoftStop() {
+  activeKeys.clear(); stopHold(); lastSendTime = 0;
+  const data = await apiFetch("/move?cmd=stop");
+  if (data) document.getElementById("esp-dot").className = "dot online";
+  currentCmd = "stop"; updateLastCmd("IDLE"); updateDpadVisual("stop");
+  addLog("Soft stop", "stop");
+}
+
+// ── HARD E-STOP ───────────────────────────────────────────────────────────
+async function sendEmergencyStop() {
+  activeKeys.clear(); stopHold();
+  await apiFetch("/stop");
+  setControlsLocked(true);
+  currentCmd = "stop"; updateLastCmd("E-STOP"); updateDpadVisual("stop");
+  addLog("⚠ EMERGENCY STOP — controls locked", "stop");
+}
+
+// ── RESUME ────────────────────────────────────────────────────────────────
+async function sendResume() {
+  const data = await apiFetch("/resume");
+  if (data && data.ok) {
+    setControlsLocked(false); updateLastCmd("RESUMED");
+    addLog("Controls resumed", "move");
+  } else {
+    addLog("Resume failed — check ESP32", "stop");
+  }
+}
+
+// ── Lock / unlock UI ──────────────────────────────────────────────────────
+function setControlsLocked(locked) {
+  controlsLocked = locked;
+  document.querySelectorAll(".dpad-btn[data-dir]").forEach(btn => {
+    if (btn.dataset.dir !== "stop") btn.disabled = locked;
+  });
+  document.getElementById("speed-slider").disabled = locked;
+  document.getElementById("locked-banner").classList.toggle("visible", locked);
+
+  const estopBtn = document.getElementById("estop-btn");
+  if (locked) {
+    estopBtn.textContent = "▶ RESUME";
+    estopBtn.classList.add("locked", "resume");
+    estopBtn.onclick = sendResume;
+  } else {
+    estopBtn.textContent = "⬛ EMERGENCY STOP";
+    estopBtn.classList.remove("locked", "resume");
+    estopBtn.onclick = sendEmergencyStop;
+  }
+}
+
+// ── Movement ─────────────────────────────────────────────────────────────
+async function sendMove(immediate = false) {
+  if (controlsLocked) return;
+  const now = Date.now();
+  if (!immediate && now - lastSendTime < SEND_DEBOUNCE) return;
+  lastSendTime = now;
+  const cmd = keysToCmd(); currentCmd = cmd;
+  const data = await apiFetch(`/move?cmd=${cmd}`);
+  if (data) document.getElementById("esp-dot").className = "dot online";
+  updateLastCmd(cmd === "stop" ? "IDLE" : `MOVE: ${cmd.toUpperCase()}`);
+  updateDpadVisual(cmd);
+}
+
+// ── Snapshot Gallery ──────────────────────────────────────────────────────
+async function fetchSnapshotList() {
+  const data = await apiFetch("/snapshot/list");
+  const gallery = document.getElementById("snap-gallery");
+  const empty   = document.getElementById("snap-empty");
+  const countEl = document.getElementById("snap-gallery-count");
+
+  if (!data || !Array.isArray(data) || data.length === 0) {
+    gallery.innerHTML = ""; gallery.appendChild(empty);
+    empty.style.display = "block"; countEl.textContent = ""; return;
+  }
+  empty.style.display = "none";
+  countEl.textContent = `(${data.length})`;
+  gallery.innerHTML = "";
+  data.forEach(filename => {
+    const item = document.createElement("div");
+    item.className = "snap-item"; item.title = filename;
+    const icon = document.createElement("span");
+    icon.className = "snap-item-icon"; icon.textContent = "🖼";
+    const name = document.createElement("span");
+    name.className = "snap-item-name";
+    const m = filename.match(/_(\d{8})_(\d{6})_(\d+)\.jpg$/);
+    name.textContent = m
+      ? `${m[2].replace(/(\d{2})(\d{2})(\d{2})/, "$1:$2:$3")} #${parseInt(m[3])}`
+      : filename;
+    const dl = document.createElement("a");
+    dl.className = "snap-item-dl";
+    dl.href = `${API}/snapshot/download/${encodeURIComponent(filename)}`;
+    dl.download = filename; dl.target = "_blank";
+    dl.textContent = "⬇"; dl.title = `Download ${filename}`;
+    item.appendChild(icon); item.appendChild(name); item.appendChild(dl);
+    gallery.appendChild(item);
+  });
+}
+document.getElementById("gallery-refresh-btn").addEventListener("click", fetchSnapshotList);
+
+// ── Light / Snapshot ──────────────────────────────────────────────────────
+async function toggleLight() {
+  lightOn = !lightOn;
+  document.getElementById("light-btn").classList.toggle("active", lightOn);
+  await apiFetch(`/light?s=${lightOn ? 1 : 0}`);
+  addLog(`Lights ${lightOn ? "ON" : "OFF"}`, "light");
+}
+
+async function triggerSnapshot() {
+  const data = await apiFetch("/snapshot");
+  if (data) {
+    snapCount++;
+    document.getElementById("snap-count").textContent = snapCount;
+    addLog(`Snapshot: ${data.filename || "#"+snapCount}`, "snap");
+    fetchSnapshotList();
+  }
+}
+
+async function toggleAutoSnap() {
+  autoSnapOn = !autoSnapOn;
+  const iv = parseInt(document.getElementById("snap-interval").value) || 10;
+  const btn = document.getElementById("autosnap-btn");
+  btn.textContent = autoSnapOn ? "⏹" : "▶";
+  btn.classList.toggle("active", autoSnapOn);
+  await apiFetch(`/snapshot/auto?enable=${autoSnapOn}&interval=${iv}`);
+  addLog(`Auto-snap ${autoSnapOn ? "ON ("+iv+"s)" : "OFF"}`, "snap");
+}
+
+// ── D-pad ─────────────────────────────────────────────────────────────────
+function stopHold() { clearInterval(holdInterval); holdInterval = null; }
+
+function dpadPress(dir) {
+  if (controlsLocked) return;
+  if (dir === "stop") { sendSoftStop(); return; }
+  activeKeys.add(dir); sendMove(true);
+  stopHold();
+  holdInterval = setInterval(() => {
+    if (activeKeys.size > 0) sendMove(false);
+  }, HOLD_REPEAT);
+}
+
+function dpadRelease(dir) {
+  if (dir === "stop") return;
+  if (!activeKeys.has(dir)) return;
+  activeKeys.delete(dir); stopHold();
+  if (activeKeys.size === 0) {
+    if (!controlsLocked) {
+      lastSendTime = 0; apiFetch("/move?cmd=stop");
+      currentCmd = "stop"; updateLastCmd("IDLE"); updateDpadVisual("stop");
+      document.getElementById("esp-dot").className = "dot online";
+    }
+  } else { sendMove(true); }
+}
+
+// ── D-pad visual + cmd badges ─────────────────────────────────────────────
+function updateDpadVisual(cmd) {
+  document.querySelectorAll(".dpad-btn[data-dir]").forEach(b => {
+    if (b.dataset.dir !== "stop") b.classList.toggle("active", activeKeys.has(b.dataset.dir));
+  });
+  document.querySelectorAll(".cmd-badge").forEach(b => {
+    b.classList.toggle("active", b.dataset.cmd === cmd);
+  });
+  document.getElementById("sp-bar").style.width = speed + "%";
+  document.getElementById("sp-val").textContent = speed + "%";
+}
+
+// ── Status polling ────────────────────────────────────────────────────────
+async function pollStatus() {
+  const data = await apiFetch("/status");
+  if (!data || data.error) return;
+
+  const d = typeof data.distance === "number" ? data.distance : null;
+  if (d !== null) {
+    document.getElementById("dist-val").textContent = d.toFixed(1);
+    const distEl = document.getElementById("dist-val");
+    distEl.className = "dist-value" + (d <= 10 ? " danger" : d <= 30 ? " warn" : "");
+    const pct = Math.min(100, Math.round((1 - (d - 10) / 90) * 100));
+    const bar = document.getElementById("dist-bar");
+    bar.style.width = pct + "%";
+    bar.style.background = d <= 10 ? "var(--danger)" : d <= 30 ? "var(--warn)" : "var(--safe)";
+    document.getElementById("dist-pct").textContent = pct + "%";
+  }
+
+  document.getElementById("obs-badge").classList.toggle("visible", !!data.stopped);
+  if (data.locked && !controlsLocked) setControlsLocked(true);
+  if (data.cmd) {
+    document.querySelectorAll(".cmd-badge").forEach(b => {
+      b.classList.toggle("active", b.dataset.cmd === data.cmd);
+    });
+  }
+  if (typeof data.speed === "number") {
+    speed = data.speed;
+    document.getElementById("sp-bar").style.width = speed + "%";
+    document.getElementById("sp-val").textContent = speed + "%";
+    document.getElementById("speed-disp").textContent = speed + "%";
+    document.getElementById("speed-slider").value = speed;
+  }
+}
+setInterval(pollStatus, STATUS_POLL);
+
+// ── D-pad pointer events ──────────────────────────────────────────────────
+document.querySelectorAll(".dpad-btn[data-dir]").forEach(btn => {
+  btn.addEventListener("pointerdown", e => { e.preventDefault(); dpadPress(btn.dataset.dir); });
+  btn.addEventListener("pointerup",   () => dpadRelease(btn.dataset.dir));
+  btn.addEventListener("pointerleave",() => dpadRelease(btn.dataset.dir));
+});
+
+// ── Keyboard ──────────────────────────────────────────────────────────────
+const KEY_MAP = {
+  ArrowUp:"fwd", ArrowDown:"bwd", ArrowLeft:"left", ArrowRight:"right",
+  w:"fwd", s:"bwd", a:"left", d:"right", " ":"stop"
+};
+document.addEventListener("keydown", e => {
+  const d = KEY_MAP[e.key]; if (!d) return;
+  e.preventDefault(); if (e.repeat) return;
+  dpadPress(d);
+});
+document.addEventListener("keyup", e => {
+  const d = KEY_MAP[e.key]; if (!d) return;
+  dpadRelease(d);
+});
+
+// ── Speed slider ──────────────────────────────────────────────────────────
+let speedDebounce = null;
+document.getElementById("speed-slider").addEventListener("input", e => {
+  speed = parseInt(e.target.value);
+  document.getElementById("speed-disp").textContent = speed + "%";
+  document.getElementById("sp-bar").style.width = speed + "%";
+  document.getElementById("sp-val").textContent = speed + "%";
+  clearTimeout(speedDebounce);
+  speedDebounce = setTimeout(async () => {
+    const data = await apiFetch(`/speed?v=${speed}`);
+    if (data && !data.error) addLog(`Speed: ${speed}%`, "info");
+    else if (data?.error) addLog(`Speed err: ${data.error}`, "warn");
+  }, 300);
+});
+
+// ── Button wiring ─────────────────────────────────────────────────────────
+document.getElementById("estop-btn").addEventListener("click", sendEmergencyStop);
+document.getElementById("light-btn").addEventListener("click", toggleLight);
+document.getElementById("snap-btn").addEventListener("click", triggerSnapshot);
+document.getElementById("autosnap-btn").addEventListener("click", toggleAutoSnap);
+document.getElementById("refresh-btn").addEventListener("click", fetchLogs);
+document.getElementById("download-log-btn").addEventListener("click", () => {
+  const a = document.createElement("a");
+  a.href = `${API}/logs/download`; a.download = "telemetry.csv"; a.click();
+});
+document.getElementById("clear-btn").addEventListener("click", async () => {
+  await apiFetch("/logs/clear");
+  document.getElementById("log-scroll").innerHTML = "";
+  addLog("Log cleared", "move");
+});
+
+// ── Log ───────────────────────────────────────────────────────────────────
+function addLog(msg, cls = "") {
+  const el = document.createElement("div");
+  el.className = "log-entry " + cls;
+  el.textContent = `${new Date().toTimeString().slice(0,8)}  ${msg}`;
+  const s = document.getElementById("log-scroll");
+  s.prepend(el);
+  while (s.children.length > 80) s.removeChild(s.lastChild);
+}
+
+async function fetchLogs() {
+  const data = await apiFetch("/logs?limit=30");
+  if (!data || !data.logs) return;
+  const s = document.getElementById("log-scroll");
+  s.innerHTML = "";
+  data.logs.slice().reverse().forEach(row => {
+    const ev = row.event.toLowerCase();
+    const cls = ev.includes("stop") ? "stop" : ev.includes("light") ? "light" : ev.includes("snapshot") ? "snap" : "move";
+    const el = document.createElement("div");
+    el.className = "log-entry " + cls;
+    el.textContent = `${row.timestamp.slice(11)}  ${row.event}`;
+    s.appendChild(el);
+  });
+}
+
+// ── Camera stream ─────────────────────────────────────────────────────────
+const camFeed    = document.getElementById("cam-feed");
+const camOffline = document.getElementById("cam-offline");
+const camPill    = document.getElementById("cam-status-pill");
+const camLabel   = document.getElementById("cam-hud-label");
+const camRec     = document.getElementById("cam-rec-badge");
+const camFps     = document.getElementById("cam-fps-hud");
+const camTs      = document.getElementById("cam-ts-hud");
+let camConnected = false, camErrTimer = null;
+
+function setCamStatus(s) {
+  camPill.className = "cam-status-pill";
+  if (s === "streaming") {
+    camPill.classList.add("streaming"); camPill.textContent = "● STREAMING";
+    camLabel.textContent = "CAM-01 // LIVE";
+    camRec.style.display = "flex"; camOffline.style.display = "none";
+    document.getElementById("cam-dot").className = "dot online";
+  } else if (s === "loading") {
+    camPill.classList.add("loading"); camPill.textContent = "◌ CONNECTING";
+    camLabel.textContent = "CAM-01 // CONNECTING...";
+    camRec.style.display = "none";
+    document.getElementById("cam-dot").className = "dot warn";
+  } else if (s === "error") {
+    camPill.classList.add("error"); camPill.textContent = "✕ ERROR";
+    camLabel.textContent = "CAM-01 // ERROR";
+    camRec.style.display = "none"; camOffline.style.display = "flex";
+    camFps.textContent = "-- FPS";
+    document.getElementById("cam-dot").className = "dot danger";
+  } else {
+    camPill.textContent = "OFFLINE"; camLabel.textContent = "CAM-01 // OFFLINE";
+    camRec.style.display = "none"; camOffline.style.display = "flex";
+    camFps.textContent = "-- FPS";
+    document.getElementById("cam-dot").className = "dot";
+  }
+}
+
+function connectCamera(url) {
+  url = url.trim();
+  document.getElementById("cam-offline-url").textContent = url;
+  clearTimeout(camErrTimer);
+  camFeed.classList.remove("loaded"); camFeed.src = "";
+  camConnected = false; setCamStatus("loading");
+  camErrTimer = setTimeout(() => {
+    if (!camConnected) { setCamStatus("error"); camFeed.src = ""; addLog("Camera timeout", "stop"); }
+  }, 6000);
+  camFeed.src = url;
+}
+
+camFeed.addEventListener("load", () => {
+  clearTimeout(camErrTimer); camConnected = true;
+  camFeed.classList.add("loaded"); setCamStatus("streaming");
+  addLog(`Camera: ${document.getElementById("cam-url-input").value}`, "snap");
+});
+camFeed.addEventListener("error", () => {
+  clearTimeout(camErrTimer); camConnected = false;
+  camFeed.classList.remove("loaded"); setCamStatus("error"); addLog("Camera error", "stop");
+});
+setInterval(() => {
+  if (!camConnected) return;
+  camTs.textContent = new Date().toTimeString().slice(0,8);
+  camFps.textContent = "MJPEG ●";
+}, 1000);
+
+document.getElementById("cam-apply-btn").addEventListener("click", () =>
+  connectCamera(document.getElementById("cam-url-input").value));
+document.getElementById("cam-url-input").addEventListener("keydown", e => {
+  if (e.key === "Enter") connectCamera(e.target.value);
+});
+document.getElementById("cam-reconnect-btn").addEventListener("click", () =>
+  connectCamera(document.getElementById("cam-url-input").value));
+document.getElementById("cam-res-select").addEventListener("change", e => {
+  document.querySelector(".cam-viewport").style.aspectRatio = e.target.value;
+});
+
+// ── Misc ──────────────────────────────────────────────────────────────────
+function updateLastCmd(t) { document.getElementById("last-cmd").textContent = t; }
+setInterval(() => {
+  document.getElementById("ts-display").textContent = new Date().toTimeString().slice(0,8);
+}, 1000);
+
+// ── Mobile tab switching ───────────────────────────────────────────────────
+(function initMobileTabs() {
+  const tabs   = document.querySelectorAll(".tab-btn");
+  const telPan = document.getElementById("panel-telemetry");
+  const auxPan = document.getElementById("panel-aux");
+
+  function isMobile() { return window.innerWidth <= 768; }
+
+  function applyLayout() {
+    if (!isMobile()) {
+      // Desktop: remove tab-active so both panels show via CSS grid
+      telPan.classList.remove("tab-active");
+      auxPan.classList.remove("tab-active");
+    } else {
+      // Mobile: show the active tab's panel only
+      const activeName = document.querySelector(".tab-btn.active")?.dataset.tab ?? "telemetry";
+      telPan.classList.toggle("tab-active", activeName === "telemetry");
+      auxPan.classList.toggle("tab-active", activeName === "aux");
+    }
+  }
+
+  tabs.forEach(btn => {
+    btn.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      btn.classList.add("active");
+      applyLayout();
+    });
+  });
+
+  window.addEventListener("resize", applyLayout);
+  applyLayout();
+})();
+
+// ── Init ──────────────────────────────────────────────────────────────────
+fetchLogs();
+fetchSnapshotList();
+pollStatus();
+addLog("Dashboard initialized", "move");
+setCamStatus("offline");
+updateDpadVisual("stop");
+// Camera does NOT auto-connect — press CONNECT after entering the correct IP
+</script>
+</body>
+</html>
