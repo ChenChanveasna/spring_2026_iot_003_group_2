@@ -20,6 +20,8 @@ To address this need, this project proposes a **low-cost IoT-based remote-contro
 
 This solution provides a practical and accessible approach to remote monitoring, reducing human risk while maintaining situational awareness in challenging environments.
 
+### [Link to Video](https://youtu.be/26dmMD6e5S0)
+
 ---
 
 ## 2. Hardware Components and Pin Configuration
@@ -180,10 +182,12 @@ http://localhost:8000/ui/index.html
 
 ### 5.1 System Architecture
 
+![System Architecture](./images/final_project_sys-architecture.png)
 ---
 
 ### 5.2 Flowchart
 
+![Flowchart](./images/Flowchart.png)
 ---
 
 ### 5.3 Software Architecture
